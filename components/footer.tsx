@@ -19,7 +19,7 @@ export default function Footer() {
         <div className="text-sm text-paper/70">
           <p className="mb-4 text-xs uppercase tracking-[0.25em] text-gold">Office</p>
           <p>Abuja, Federal Capital Territory</p>
-          <p className="mt-1 text-paper/40">[Street address: to confirm with firm]</p>
+          <p className="mt-1 text-paper/40">XXXXXXXXXXXXXXXXXXXXXXXX</p>
         </div>
         <div className="text-sm text-paper/70">
           <p className="mb-4 text-xs uppercase tracking-[0.25em] text-gold">Follow</p>

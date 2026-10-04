@@ -9,21 +9,21 @@ const team = [
     name: "Esther David Ajinya",
     role: "Associate",
     focus: "Technology, data protection and AI governance",
-    status: "Bio to confirm",
+    status: "XXXXXXXXXX",
   },
   {
     initials: "CO",
     name: "Curtis Okpara, Esq.",
     role: "Associate Counsel",
     focus: "Represents the firm at industry events and in professional forums",
-    status: "Bio to confirm",
+    status: "XXXXXXXXXX",
   },
   {
     initials: "PN",
-    name: "Partner name",
+    name: "XXXXXXX XXXXXXXX",
     role: "Partner",
-    focus: "Leadership profile to be provided by the firm",
-    status: "Placeholder",
+    focus: "XXXXXXXXXXXXXXXX XXXXXXXXXX XXXXXXX XXXXXXXXXXXX",
+    status: "XXXXXXXXXX",
   },
 ];
 
@@ -55,7 +55,7 @@ export default function Team() {
                   <p className="mt-10 text-xs uppercase tracking-[0.25em] text-gold-deep">{m.role}</p>
                   <h3 className="font-display mt-3 text-3xl font-black leading-tight">{m.name}</h3>
                   <p className="mt-4 text-base leading-relaxed text-mute">{m.focus}</p>
-                  <p className="mt-auto pt-10 text-xs text-ink/40">[{m.status}]</p>
+                  <p className="mt-auto pt-10 text-xs text-ink/40">{m.status}</p>
                 </div>
               </SpotlightCard>
             </Reveal>

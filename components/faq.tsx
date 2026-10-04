@@ -20,7 +20,7 @@ const questions = [
   },
   {
     q: "Do you work outside Abuja?",
-    a: "[To confirm with the firm: which locations and courts the firm covers.]",
+    a: "XXXXXXXXXXXX XXXXXXXXXX XXXXXXXXXXXXXX XXXXXXXX XXXXXXXXXXX.",
   },
 ];
 
