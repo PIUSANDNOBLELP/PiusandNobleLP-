@@ -26,14 +26,14 @@ const questions = [
 
 export default function Faq() {
   return (
-    <section id="faq" className="relative bg-paper py-28 md:py-40">
+    <section id="faq" className="relative border-t border-ink/10 bg-paper-deep py-28 md:py-40">
       <div className="mx-auto grid max-w-7xl gap-16 px-6 md:px-10 lg:grid-cols-[1fr_1.4fr] lg:gap-24">
         <Reveal>
           <p className="mb-8 flex items-center gap-4 text-xs uppercase tracking-[0.3em] text-gold-deep">
             <span className="h-px w-10 bg-gold-deep" />
             Questions
           </p>
-          <h2 className="font-display text-5xl font-black leading-[0.95] md:text-7xl">Good questions, straight answers.</h2>
+          <h2 className="font-display text-5xl font-normal leading-[0.95] md:text-7xl">Good questions, straight answers.</h2>
         </Reveal>
 
         <Reveal delay={0.1}>
