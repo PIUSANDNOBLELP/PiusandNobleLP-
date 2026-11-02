@@ -9,7 +9,8 @@
   --color-gold-deep: #c9821c;
   --color-mute: #6f685c;
 
-  --font-display: var(--font-archivo), ui-sans-serif, system-ui, sans-serif;
+  --font-display: var(--font-cheltenham), ui-serif, Georgia, serif;
+  --font-sub: var(--font-archivo), ui-sans-serif, system-ui, sans-serif;
   --font-body: var(--font-inter), ui-sans-serif, system-ui, sans-serif;
 
   --ease-out-expo: cubic-bezier(0.16, 1, 0.3, 1);
@@ -110,4 +111,60 @@ body {
   .animate-marquee {
     animation: none;
   }
+}
+
+/* Admin rich text editor (Tiptap) — placeholder text and basic block spacing,
+   since the editor's content isn't styled by the public @tailwindcss/typography-less
+   ReactMarkdown overrides. */
+.prose-insight-edit p.is-editor-empty:first-child::before {
+  content: attr(data-placeholder);
+  float: left;
+  height: 0;
+  color: var(--color-mute);
+  pointer-events: none;
+}
+
+.prose-insight-edit h2 {
+  margin-top: 1.25em;
+  font-family: var(--font-display);
+  font-size: 1.5rem;
+  font-weight: 700;
+}
+
+.prose-insight-edit h3 {
+  margin-top: 1em;
+  font-family: var(--font-display);
+  font-size: 1.25rem;
+  font-weight: 700;
+}
+
+.prose-insight-edit p {
+  margin-top: 0.75em;
+}
+
+.prose-insight-edit ul,
+.prose-insight-edit ol {
+  margin-top: 0.75em;
+  padding-left: 1.5em;
+}
+
+.prose-insight-edit ul {
+  list-style: disc;
+}
+
+.prose-insight-edit ol {
+  list-style: decimal;
+}
+
+.prose-insight-edit blockquote {
+  margin-top: 0.75em;
+  border-left: 2px solid var(--color-gold);
+  padding-left: 1em;
+  font-style: italic;
+  color: var(--color-mute);
+}
+
+.prose-insight-edit a {
+  color: var(--color-gold-deep);
+  text-decoration: underline;
 }
