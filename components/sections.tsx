@@ -36,7 +36,7 @@ export function About() {
         <ScrollWords
           text="A law firm that combines global standards with innovative thinking."
           highlight={["innovative"]}
-          className="font-display max-w-6xl text-5xl font-black leading-[1.04] md:text-7xl xl:text-8xl"
+          className="font-display max-w-6xl text-5xl font-normal leading-[1.04] md:text-7xl xl:text-8xl"
         />
 
         <div className="mt-24 grid gap-6 md:grid-cols-3">
@@ -79,7 +79,7 @@ export function Cta() {
     <section className="relative overflow-hidden bg-gold text-ink">
       <div className="mx-auto flex max-w-7xl flex-col items-start justify-between gap-14 px-6 py-32 md:flex-row md:items-end md:px-10 md:py-48">
         <Reveal>
-          <h2 className="font-display text-7xl font-black leading-[0.88] md:text-[10rem]">
+          <h2 className="font-display text-7xl font-normal leading-[0.88] md:text-[10rem]">
             Let&apos;s talk<br />about it.
           </h2>
         </Reveal>

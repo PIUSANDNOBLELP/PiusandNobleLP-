@@ -35,7 +35,7 @@ export default function Approach() {
                 <span className="h-px w-10 bg-gold-deep" />
                 How we work
               </p>
-              <h2 className="font-display text-5xl font-black leading-[0.95] md:text-7xl">
+              <h2 className="font-display text-5xl font-normal leading-[0.95] md:text-7xl">
                 Four steps.<br />No surprises.
               </h2>
             </div>

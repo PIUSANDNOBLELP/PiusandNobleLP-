@@ -22,7 +22,7 @@ export default function Capabilities() {
                 <span className="h-px w-10 bg-gold-deep" />
                 Capabilities
               </p>
-              <h2 className="font-display text-5xl font-black leading-[0.95] md:text-7xl">What we handle day to day.</h2>
+              <h2 className="font-display text-5xl font-normal leading-[0.95] md:text-7xl">What we handle day to day.</h2>
             </div>
           </div>
         </Reveal>

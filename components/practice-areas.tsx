@@ -92,7 +92,7 @@ export default function PracticeAreas() {
             <span className="h-px w-10 bg-gold-deep" />
             Practice areas
           </p>
-          <h2 className="font-display text-5xl font-black leading-[0.95] md:text-6xl lg:text-[clamp(2.75rem,6.2vh,4.75rem)]">
+          <h2 className="font-display text-5xl font-normal leading-[0.95] md:text-6xl lg:text-[clamp(2.75rem,6.2vh,4.75rem)]">
             Seven areas.<br />One standard.
           </h2>
 
