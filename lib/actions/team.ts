@@ -27,7 +27,10 @@ export async function saveTeamMember(
     id: String(formData.get("id") ?? "") || undefined,
     name: String(formData.get("name") ?? ""),
     role: String(formData.get("role") ?? ""),
+    level: String(formData.get("level") ?? "ASSOCIATE"),
     focus: String(formData.get("focus") ?? ""),
+    qualifications: String(formData.get("qualifications") ?? ""),
+    expertise: String(formData.get("expertise") ?? ""),
     photoUrl: String(formData.get("photoUrl") ?? ""),
     displayOrder: String(formData.get("displayOrder") ?? "0"),
     status: String(formData.get("status") ?? "DRAFT"),
@@ -36,8 +39,13 @@ export async function saveTeamMember(
     return { error: parsed.error.issues[0]?.message ?? "Check the form and try again." };
   }
 
-  const { id, photoUrl, ...rest } = parsed.data;
-  const data = { ...rest, photoUrl: photoUrl || null };
+  const { id, photoUrl, qualifications, expertise, ...rest } = parsed.data;
+  const data = {
+    ...rest,
+    photoUrl: photoUrl || null,
+    qualifications: qualifications || null,
+    expertise: expertise || null,
+  };
 
   if (id) {
     await prisma.teamMember.update({ where: { id }, data });

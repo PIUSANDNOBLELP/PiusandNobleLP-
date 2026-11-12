@@ -28,6 +28,7 @@ export default async function AdminTeamPage() {
             <tr>
               <th className="px-5 py-3">Name</th>
               <th className="px-5 py-3">Role</th>
+              <th className="px-5 py-3">Level</th>
               <th className="px-5 py-3">Order</th>
               <th className="px-5 py-3">Status</th>
               <th className="px-5 py-3" />
@@ -38,6 +39,15 @@ export default async function AdminTeamPage() {
               <tr key={m.id} className="border-t border-ink/10">
                 <td className="px-5 py-4 font-medium">{m.name}</td>
                 <td className="px-5 py-4 text-mute">{m.role}</td>
+                <td className="px-5 py-4">
+                  <span
+                    className={`rounded-full px-3 py-1 text-xs ${
+                      m.level === "PARTNER" ? "bg-gold/20 text-gold-deep" : "bg-ink/10 text-ink/60"
+                    }`}
+                  >
+                    {m.level === "PARTNER" ? "Partner" : "Associate"}
+                  </span>
+                </td>
                 <td className="px-5 py-4 text-mute">{m.displayOrder}</td>
                 <td className="px-5 py-4">
                   <span
@@ -63,7 +73,7 @@ export default async function AdminTeamPage() {
             ))}
             {members.length === 0 && (
               <tr>
-                <td colSpan={5} className="px-5 py-10 text-center text-mute">
+                <td colSpan={6} className="px-5 py-10 text-center text-mute">
                   No team members yet.
                 </td>
               </tr>

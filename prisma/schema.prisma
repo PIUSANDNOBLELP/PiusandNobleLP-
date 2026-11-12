@@ -46,17 +46,21 @@ model AdminInvite {
 }
 
 model TeamMember {
-  id           String            @id @default(cuid())
-  name         String
-  role         String
-  focus        String
-  photoUrl     String?
-  displayOrder Int               @default(0)
-  status       PublicationStatus @default(DRAFT)
-  createdAt    DateTime          @default(now())
-  updatedAt    DateTime          @updatedAt
+  id            String            @id @default(cuid())
+  name          String
+  role          String
+  level         TeamLevel         @default(ASSOCIATE)
+  focus         String
+  qualifications String?
+  expertise     String?
+  photoUrl      String?
+  displayOrder  Int               @default(0)
+  status        PublicationStatus @default(DRAFT)
+  createdAt     DateTime          @default(now())
+  updatedAt     DateTime          @updatedAt
 
   @@index([status, displayOrder])
+  @@index([level])
 }
 
 // Backs both "Insights" (long-form, has its own detail page) and "Updates"
@@ -85,6 +89,11 @@ model Content {
 enum PublicationStatus {
   DRAFT
   PUBLISHED
+}
+
+enum TeamLevel {
+  PARTNER
+  ASSOCIATE
 }
 
 enum ContentType {

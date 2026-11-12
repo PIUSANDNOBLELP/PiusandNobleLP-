@@ -8,7 +8,10 @@ type TeamMember = {
   id: string;
   name: string;
   role: string;
+  level: "PARTNER" | "ASSOCIATE";
   focus: string;
+  qualifications: string | null;
+  expertise: string | null;
   photoUrl: string | null;
   displayOrder: number;
   status: "DRAFT" | "PUBLISHED";
@@ -34,15 +37,29 @@ export function TeamForm({ member }: { member?: TeamMember }) {
         />
       </label>
 
-      <label className="block">
-        <span className="text-xs uppercase tracking-[0.2em] text-mute">Role</span>
-        <input
-          name="role"
-          required
-          defaultValue={member?.role}
-          className="mt-2 w-full border-b border-ink/30 bg-transparent py-3 text-lg outline-none focus:border-gold"
-        />
-      </label>
+      <div className="grid grid-cols-2 gap-6">
+        <label className="block">
+          <span className="text-xs uppercase tracking-[0.2em] text-mute">Role</span>
+          <input
+            name="role"
+            required
+            defaultValue={member?.role}
+            placeholder="Managing Partner, Associate I…"
+            className="mt-2 w-full border-b border-ink/30 bg-transparent py-3 text-lg outline-none focus:border-gold"
+          />
+        </label>
+        <label className="block">
+          <span className="text-xs uppercase tracking-[0.2em] text-mute">Level</span>
+          <select
+            name="level"
+            defaultValue={member?.level ?? "ASSOCIATE"}
+            className="mt-2 w-full border-b border-ink/30 bg-transparent py-3 text-lg outline-none focus:border-gold"
+          >
+            <option value="ASSOCIATE">Associate</option>
+            <option value="PARTNER">Partner</option>
+          </select>
+        </label>
+      </div>
 
       <label className="block">
         <span className="text-xs uppercase tracking-[0.2em] text-mute">Focus / bio</span>
@@ -51,6 +68,26 @@ export function TeamForm({ member }: { member?: TeamMember }) {
           required
           rows={3}
           defaultValue={member?.focus}
+          className="mt-2 w-full border-b border-ink/30 bg-transparent py-3 text-lg outline-none focus:border-gold"
+        />
+      </label>
+
+      <label className="block">
+        <span className="text-xs uppercase tracking-[0.2em] text-mute">Qualifications</span>
+        <input
+          name="qualifications"
+          defaultValue={member?.qualifications ?? ""}
+          placeholder="e.g. LL.B (Hons), BL, CIPP/E"
+          className="mt-2 w-full border-b border-ink/30 bg-transparent py-3 text-lg outline-none focus:border-gold"
+        />
+      </label>
+
+      <label className="block">
+        <span className="text-xs uppercase tracking-[0.2em] text-mute">Areas of expertise (comma-separated)</span>
+        <input
+          name="expertise"
+          defaultValue={member?.expertise ?? ""}
+          placeholder="Corporate Law, Data Privacy, Litigation"
           className="mt-2 w-full border-b border-ink/30 bg-transparent py-3 text-lg outline-none focus:border-gold"
         />
       </label>

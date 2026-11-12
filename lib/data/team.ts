@@ -5,7 +5,10 @@ export type PublicTeamMember = {
   id: string;
   name: string;
   role: string;
+  level: "PARTNER" | "ASSOCIATE";
   focus: string;
+  qualifications: string | null;
+  expertise: string | null;
   photoUrl: string | null;
   initials: string;
 };
@@ -30,7 +33,10 @@ export const getPublishedTeamMembers = unstable_cache(
         id: r.id,
         name: r.name,
         role: r.role,
+        level: r.level,
         focus: r.focus,
+        qualifications: r.qualifications,
+        expertise: r.expertise,
         photoUrl: r.photoUrl,
         initials: initialsFrom(r.name),
       }));
@@ -42,5 +48,5 @@ export const getPublishedTeamMembers = unstable_cache(
     }
   },
   ["published-team-members"],
-  { tags: ["team"], revalidate: 86400 },
+  { tags: ["team"], revalidate: 60 },
 );
