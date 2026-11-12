@@ -1,4 +1,5 @@
 import Link from "next/link";
+import { PRACTICE_AREAS, practiceAreaHref } from "@/lib/practice-areas";
 
 // Footer links and the disclaimer below are draft wording for the firm to
 // review. The office address was supplied by the client.
@@ -10,16 +11,6 @@ const siteLinks = [
   { label: "Contact", href: "/contact" },
 ];
 
-const practiceAreas = [
-  "Artificial Intelligence",
-  "Dispute Resolution",
-  "Corporate & Commercial",
-  "Data Privacy Advisory",
-  "Intellectual Property",
-  "Entertainment Law",
-  "Real Estate",
-];
-
 export default function Footer() {
   return (
     <footer className="bg-ink text-paper">
@@ -27,7 +18,7 @@ export default function Footer() {
         <div>
           <div className="flex items-center gap-4">
             {/* eslint-disable-next-line @next/next/no-img-element */}
-            <img src="/brand/logo-mark.png" alt="Pius & Noble LP" className="h-12 w-12" />
+            <img src="/brand/pius-and-noble-logo.png" alt="Pius & Noble LP" className="h-12 w-12" />
             <p className="font-display text-lg font-black leading-none">
               PIUS <span className="text-gold">&amp;</span> NOBLE LP
             </p>
@@ -63,10 +54,10 @@ export default function Footer() {
         <div>
           <p className="text-xs font-semibold uppercase tracking-[0.25em] text-gold">Practice areas</p>
           <ul className="mt-5 space-y-3 text-sm">
-            {practiceAreas.map((area) => (
-              <li key={area}>
-                <Link href="/practice-areas" className="text-paper/70 transition-colors hover:text-gold">
-                  {area}
+            {PRACTICE_AREAS.map((area) => (
+              <li key={area.slug}>
+                <Link href={practiceAreaHref(area.slug)} className="text-paper/70 transition-colors hover:text-gold">
+                  {area.name}
                 </Link>
               </li>
             ))}
@@ -89,10 +80,22 @@ export default function Footer() {
               </span>
             </li>
             <li>
-              <Link href="/contact" className="flex items-center gap-3 transition-colors hover:text-gold">
+              <a
+                href="mailto:piusowho@piusandnoblelp.com"
+                className="flex items-center gap-3 transition-colors hover:text-gold"
+              >
                 <MailIcon />
-                Send an enquiry
-              </Link>
+                piusowho@piusandnoblelp.com
+              </a>
+            </li>
+            <li>
+              <a
+                href="tel:+2348080638471"
+                className="flex items-center gap-3 transition-colors hover:text-gold"
+              >
+                <PhoneIcon />
+                +234-8080638471
+              </a>
             </li>
             <li>
               <a
@@ -178,6 +181,26 @@ function MailIcon() {
     >
       <path d="m22 7-8.991 5.727a2 2 0 0 1-2.009 0L2 7" />
       <rect x="2" y="4" width="20" height="16" rx="2" />
+    </svg>
+  );
+}
+
+function PhoneIcon() {
+  return (
+    <svg
+      xmlns="http://www.w3.org/2000/svg"
+      width="24"
+      height="24"
+      viewBox="0 0 24 24"
+      fill="none"
+      stroke="currentColor"
+      strokeWidth="2"
+      strokeLinecap="round"
+      strokeLinejoin="round"
+      className="h-4 w-4 shrink-0 text-gold"
+      aria-hidden
+    >
+      <path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72c.127.96.361 1.903.7 2.81a2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45c.907.339 1.85.573 2.81.7A2 2 0 0 1 22 16.92z" />
     </svg>
   );
 }
