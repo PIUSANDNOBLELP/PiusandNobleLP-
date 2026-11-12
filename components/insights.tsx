@@ -12,7 +12,7 @@ export default async function Insights({ limit }: { limit?: number } = {}) {
 
   return (
     <section id="insights" className="relative bg-ink text-paper">
-      <div className="mx-auto max-w-7xl px-6 py-28 md:px-10 md:py-40">
+      <div className="mx-auto max-w-7xl px-6 pb-28 md:px-10 md:pb-40">
         <Reveal>
           <p className="mb-8 flex items-center gap-4 text-xs uppercase tracking-[0.3em] text-gold">
             <span className="h-px w-10 bg-gold" />

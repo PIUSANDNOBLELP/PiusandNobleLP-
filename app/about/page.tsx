@@ -8,33 +8,67 @@ import { About } from "@/components/sections";
 export const metadata = {
   title: "About Us | Pius & Noble LP",
   description:
-    "Pius & Noble LP combines global legal standards with innovative, expedited and proactive thinking across seven practice areas.",
+    "Pius & Noble LP combines global legal standards with innovative, expedited and proactive thinking across commercial, real estate, litigation and ADR.",
 };
 
 export default function AboutPage() {
   return (
     <>
       <Nav />
-      <main className="pt-40 bg-paper-deep">
-        <About />
+      <main className="pt-24 bg-paper-deep">
+        <About compact />
+
+        <section className="bg-ink py-28 text-paper md:py-40">
+          <div className="mx-auto grid max-w-6xl gap-12 px-6 md:grid-cols-2 md:px-10">
+            <Reveal>
+              <p className="mb-6 flex items-center gap-4 text-xs uppercase tracking-[0.3em] text-gold">
+                <span className="h-px w-10 bg-gold" />
+                Vision
+              </p>
+              <p className="font-display text-3xl font-normal leading-tight md:text-4xl">
+                To be Africa&apos;s most trusted legal partner, distinguished by our commitment to
+                swift, world-class solutions and unwavering client success.
+              </p>
+            </Reveal>
+            <Reveal delay={0.12}>
+              <p className="mb-6 flex items-center gap-4 text-xs uppercase tracking-[0.3em] text-gold">
+                <span className="h-px w-10 bg-gold" />
+                Mission
+              </p>
+              <p className="font-display text-3xl font-normal leading-tight md:text-4xl">
+                To be a world-class firm that provides quick legal solutions.
+              </p>
+            </Reveal>
+          </div>
+        </section>
 
         <section className="bg-paper py-28 md:py-40">
           <div className="mx-auto max-w-4xl px-6 md:px-10">
             <Reveal>
               <p className="mb-8 flex items-center gap-4 text-xs uppercase tracking-[0.3em] text-gold-deep">
                 <span className="h-px w-10 bg-gold-deep" />
-                Our story
+                About the firm
               </p>
               <p className="font-display text-2xl font-medium leading-snug text-ink md:text-3xl">
-                Pius &amp; Noble LP was built around a simple idea: legal advice should move at the
-                speed of the business and the people it serves.
+                A distinguished Abuja-based firm, recognised for comprehensive legal services
+                across a robust team of seasoned professionals.
               </p>
               <p className="mt-6 max-w-2xl text-lg leading-relaxed text-mute">
-                We work across seven practice areas, from artificial intelligence and data
-                privacy to corporate, dispute resolution and real estate, applying the same
-                standard of care to every matter regardless of size. Clients come to us for clear
-                answers, realistic timelines, and counsel that looks ahead rather than reacting to
-                the last problem.
+                Our practice is segmented into four core areas — Commercial and Corporate Law,
+                Real Estate and Property Law, Civil and Criminal Litigation, and Alternative
+                Dispute Resolution (ADR). In the Commercial and Corporate division we advise on
+                contracts, telecommunications, intellectual property, data protection,
+                cybersecurity, taxation, company secretarial services and startup documentation.
+                Our Real Estate and Property division specialises in real estate, property
+                management and regulatory compliance, while our Litigation division handles all
+                aspects of civil and criminal litigation, and ADR resolves disputes outside of
+                court.
+              </p>
+              <p className="mt-6 max-w-2xl text-lg leading-relaxed text-mute">
+                We are committed to delivering cutting-edge legal solutions for local and
+                international clientele, operating on the principles of excellence, efficiency,
+                accessibility and personalised service — with every matter handled to the highest
+                standard of professionalism and integrity.
               </p>
             </Reveal>
           </div>

@@ -11,7 +11,7 @@ export default function InsightsPage() {
   return (
     <>
       <Nav />
-      <main className="pt-40 bg-ink">
+      <main className="pt-24 bg-ink">
         <Insights />
       </main>
       <Footer />

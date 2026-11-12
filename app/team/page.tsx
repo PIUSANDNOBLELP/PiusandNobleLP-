@@ -11,8 +11,8 @@ export default function TeamPage() {
   return (
     <>
       <Nav />
-      <main className="pt-40 bg-paper">
-        <Team />
+      <main className="pt-24 bg-paper">
+        <Team compact />
       </main>
       <Footer />
     </>

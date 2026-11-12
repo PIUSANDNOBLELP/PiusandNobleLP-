@@ -14,7 +14,7 @@ const steps = [
   },
   {
     no: "03",
-    title: "Advise",
+    title: "Advice",
     body: "You get clear options, timelines and costs before anything is signed or filed.",
   },
   {

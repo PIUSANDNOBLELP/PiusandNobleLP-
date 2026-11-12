@@ -18,14 +18,14 @@ const values = [
   {
     no: "03",
     title: "Proactive",
-    body: "We look ahead to regulatory and commercial risk, not just the problem in front of you.",
+    body: "We look ahead to regulatory and commercial risks, not just the problem in front of you.",
   },
 ];
 
-export function About() {
+export function About({ compact = false }: { compact?: boolean }) {
   return (
     <section id="about" className="relative bg-paper-deep">
-      <div className="mx-auto max-w-7xl px-6 py-28 md:px-10 md:py-44">
+      <div className={`mx-auto max-w-7xl px-6 md:px-10 ${compact ? "pb-28 md:pb-44" : "py-28 md:py-44"}`}>
         <Reveal>
           <p className="mb-8 flex items-center gap-4 text-xs uppercase tracking-[0.3em] text-gold-deep">
             <span className="h-px w-10 bg-gold-deep" />
