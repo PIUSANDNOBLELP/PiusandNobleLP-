@@ -92,7 +92,7 @@ export function ContentForm({ item }: { item?: Content }) {
 
       <div>
         <span className="text-xs uppercase tracking-[0.2em] text-mute">
-          Body {kind === "UPDATE" && "(Markdown)"}
+          Body {kind === "UPDATE" ? "(plain text)" : "(rich text)"}
         </span>
         {kind === "INSIGHT" ? (
           <RichTextEditor name="body" defaultValue={item?.body} />

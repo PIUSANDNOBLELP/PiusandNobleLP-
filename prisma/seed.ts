@@ -2,8 +2,11 @@ import { config } from "dotenv";
 config({ path: ".env.local" });
 
 import bcrypt from "bcryptjs";
+import MarkdownIt from "markdown-it";
 import { PrismaPg } from "@prisma/adapter-pg";
 import { PrismaClient } from "../generated/prisma/client";
+
+const md = new MarkdownIt({ html: false, linkify: true });
 
 // Draft editorial copy seeded for the client to review and edit in
 // /admin/content. Slugs match the firm's existing explainer/regulation
@@ -22,8 +25,9 @@ type SeedContent = {
 };
 
 // Seeded content is published so the homepage strip and /insights page have
-// something real to show. Bodies are Markdown (the shared `body: String`
-// column), matching what the admin rich text editor serializes.
+// something real to show. Insight bodies are authored here as Markdown and
+// converted to HTML at seed time (matching what the admin rich text editor now
+// stores); Update bodies stay plain Markdown text (short notices, not rendered).
 const contentSeed: SeedContent[] = [
   {
     slug: "breach-of-promise-to-marry-in-nigeria",
@@ -386,10 +390,11 @@ async function main() {
   // Upsert with an empty update so re-running the seed never overwrites an
   // article that has since been edited in the admin.
   for (const item of contentSeed) {
+    const body = item.kind === "INSIGHT" ? md.render(item.body) : item.body;
     await prisma.content.upsert({
       where: { slug: item.slug },
       update: {},
-      create: { ...item, authorId: admin.id },
+      create: { ...item, body, authorId: admin.id },
     });
   }
 

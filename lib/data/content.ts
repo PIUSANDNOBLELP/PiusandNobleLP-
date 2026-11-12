@@ -52,7 +52,7 @@ export const getPublishedContent = unstable_cache(
     }
   },
   ["published-content"],
-  { tags: ["content"], revalidate: 86400 },
+  { tags: ["content"], revalidate: 60 },
 );
 
 export const getInsightBySlug = unstable_cache(
@@ -68,5 +68,5 @@ export const getInsightBySlug = unstable_cache(
     }
   },
   ["insight-by-slug"],
-  { tags: ["content"], revalidate: 86400 },
+  { tags: ["content"], revalidate: 60 },
 );
