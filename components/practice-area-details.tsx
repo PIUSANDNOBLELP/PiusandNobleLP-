@@ -1,43 +1,73 @@
 import Reveal from "@/components/reveal";
 
-// Expanded write-ups for the detail page only — the pinned-scroll teaser
-// above (and its one-line "note" per area) is what repeats on the homepage.
-// Draft copy for the proposal; check specifics with the firm before launch.
+// Expanded write-ups for the detail page only — the pinned-scroll teaser above
+// is what repeats on the homepage. Each entry is anchored by its slug so the
+// navbar, footer and pinned-scroll can deep-link straight to it. Slugs must
+// match lib/practice-areas.ts. Copy is drawn from the firm's profile document;
+// confirm specifics with the firm before launch.
 const details = [
   {
+    slug: "commercial-and-corporate-law",
+    name: "Commercial and Corporate Law",
+    body: "We offer a broad spectrum of services tailored to help businesses navigate change with precision and foresight, addressing both domestic and international legal needs. Our commercial practice spans contracts, telecommunications, company secretarial services and startup documentation, supported by specialist sub-practices in technology, privacy and data protection, taxation, intellectual property, entertainment law, and employment and labour law — so a business stays compliant and competitive from incorporation through to complex transactions.",
+    services: [
+      "Company formation and governance",
+      "Commercial contracts and negotiation",
+      "Taxation and company secretarial",
+      "Employment and labour law",
+      "Startups advisory",
+    ],
+  },
+  {
+    slug: "real-estate-and-property-law",
+    name: "Real Estate and Property Law",
+    body: "Our team has wide-ranging experience guiding clients through the complexities of property ownership, from acquisition to management, joint ventures and due diligence. Our services cover sale and purchase of land, regulatory compliance, land agreement review and negotiation, property management, and mortgage and securities. We have brokered and concluded multi-billion-naira acquisitions — including a 57-hectare parcel of land — coordinating the full spectrum of legal, transactional and regulatory processes under the Land Use Act.",
+    services: [
+      "Sale and purchase of land",
+      "Due diligence and title verification",
+      "Land agreement review and negotiation",
+      "Mortgages, securities and development agreements",
+    ],
+  },
+  {
+    slug: "litigation-and-dispute-resolution",
+    name: "Litigation and Dispute Resolution",
+    body: "Our litigation practice covers both civil and criminal matters across all practice areas, providing robust representation in legal disputes at every level — from negotiation and mediation through to the Court of Appeal and the Supreme Court of Nigeria. We pair this with alternative dispute resolution (ADR) to resolve matters outside of court where that best protects the client's commercial outcome. Our Managing Partner has prosecuted and defended matters at the Supreme Court, achieving binding precedents, including representing NDIC in successful Supreme Court matters.",
+    services: [
+      "Civil and criminal litigation",
+      "Arbitration and mediation (ADR)",
+      "Appellate and Supreme Court advocacy",
+    ],
+  },
+  {
+    slug: "energy-and-natural-resources",
+    name: "Energy and Natural Resources",
+    body: "We advise clients across the oil and gas, power, mining and renewable energy sectors on the lifecycle of their operations. Our work spans transactions, exploration and production agreements, joint operating agreements and regulatory compliance, as well as project finance, mergers and acquisitions, and environmental and regulatory considerations across the energy value chain.",
+    services: [
+      "Oil, gas and power transactions",
+      "Mining and renewable energy",
+      "Project finance and joint operating agreements",
+    ],
+  },
+  {
+    slug: "data-protection-and-privacy",
+    name: "Data Protection and Privacy",
+    body: "We advise on the full range of data-protection and privacy compliance obligations under the Nigeria Data Protection Act (NDPA) 2023 and its General Application and Implementation Directive (GAID) 2025 — including compliance audits, registration and Compliance Audit Return (CAR) filings with the NDPC, privacy policies and data-processing agreements, cross-border transfers, impact assessments and breach response. We support data controllers and processors across finance, energy, health and technology, and hold active membership of the Data Protection Professionals Network (DPLAN).",
+    services: [
+      "NDPA compliance audits and CAR filings",
+      "Privacy policies and data-processing agreements",
+      "Breach response and regulatory engagement",
+    ],
+  },
+  {
+    slug: "artificial-intelligence",
     name: "Artificial Intelligence",
-    body: "We advise on AI procurement, licensing and deployment — contracts with vendors, data-sourcing and training-data rights, and the governance structures a business needs before putting a model into production. Where a product uses AI in a customer-facing way, we help think through disclosure, liability and the regulatory questions that are still being settled in Nigeria and abroad.",
-    services: ["AI vendor and licensing contracts", "Model governance and risk review", "AI product compliance advisory"],
-  },
-  {
-    name: "Dispute Resolution",
-    body: "Most disputes are resolved before they reach a courtroom, and we start every matter by asking what resolution actually looks like for the client — a quick negotiated settlement, binding arbitration, or litigation where that's the only real option. When a matter does go to court or arbitration, we prepare it the same way regardless: thoroughly, and with a clear view of the commercial outcome being protected.",
-    services: ["Commercial litigation", "Arbitration and mediation", "Pre-dispute negotiation strategy"],
-  },
-  {
-    name: "Corporate & Commercial",
-    body: "From incorporation through to complex commercial agreements, we handle the paperwork that keeps a business running and defensible — shareholder agreements, supply and distribution contracts, joint ventures, and the governance documents that matter when a company raises capital or brings on a new partner.",
-    services: ["Company formation and governance", "Commercial contracts and negotiations", "Joint ventures and partnerships"],
-  },
-  {
-    name: "Data Privacy Advisory",
-    body: "Nigeria's data protection framework puts real obligations on any business handling personal data, and the penalties for getting it wrong are not theoretical. We run compliance audits, draft the policies a business needs to demonstrate compliance, and advise on data-sharing arrangements before they're signed rather than after a regulator asks questions.",
-    services: ["NDPR compliance audits", "Privacy policy and data-sharing agreements", "Breach response advisory"],
-  },
-  {
-    name: "Intellectual Property",
-    body: "A brand, a product design or a piece of creative work is only protected if the paperwork behind it holds up. We handle trademark and copyright registration, licensing arrangements, and the enforcement work that follows when someone infringes on IP a client has spent years building.",
-    services: ["Trademark and copyright registration", "IP licensing agreements", "Infringement and enforcement"],
-  },
-  {
-    name: "Entertainment Law",
-    body: "Artists, producers and media businesses work under contracts that determine who owns what, for how long, and on what terms — recording and publishing deals, endorsement agreements, and rights negotiations. We advise on these from the artist's side and the business side, so the terms actually reflect how the relationship is meant to work.",
-    services: ["Recording and publishing contracts", "Endorsement and licensing deals", "Rights and royalties negotiation"],
-  },
-  {
-    name: "Real Estate",
-    body: "Property transactions in Nigeria carry real documentation risk — title issues, incomplete due diligence, and disputes that trace back to a contract that wasn't thorough enough. We handle the due diligence and documentation on both sides of a transaction, from acquisition through to development agreements.",
-    services: ["Property acquisition due diligence", "Development and lease agreements", "Title verification"],
+    body: "As artificial intelligence becomes increasingly embedded in how businesses operate, we advise on the legal and regulatory issues arising from the development, deployment and use of AI systems in Nigeria — guidance aligned with the National Artificial Intelligence Strategy (NAIS) and emerging NITDA guidelines, plus the overlap between AI governance and data-protection obligations under the NDPA 2023. Our services span AI governance and risk advisory, review and negotiation of AI vendor and licensing agreements, and IP and liability considerations around AI-generated content and automated decision-making.",
+    services: [
+      "AI governance and risk advisory",
+      "AI vendor and licensing agreements",
+      "IP and liability for AI-generated content",
+    ],
   },
 ];
 
@@ -57,8 +87,11 @@ export default function PracticeAreaDetails() {
 
         <div className="mt-16 space-y-14">
           {details.map((d, i) => (
-            <Reveal key={d.name} delay={Math.min(i * 0.06, 0.3)}>
-              <div className="grid gap-5 border-t border-ink/15 pt-8 md:grid-cols-[260px_1fr] md:gap-10">
+            <Reveal key={d.slug} delay={Math.min(i * 0.06, 0.3)}>
+              <div
+                id={d.slug}
+                className="grid scroll-mt-28 gap-5 border-t border-ink/15 pt-8 md:grid-cols-[260px_1fr] md:gap-10"
+              >
                 <div>
                   <span className="font-display text-sm text-gold-deep">0{i + 1}</span>
                   <h3 className="font-display mt-2 text-2xl font-bold leading-tight md:text-3xl">

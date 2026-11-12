@@ -19,7 +19,7 @@ const slides: Slide[] = [
     alt: "Modern office towers in Abuja, Nigeria",
     headline: ["Trusted legal", "solutions,", "global standards."],
     subhead:
-      "An innovative law firm offering expedited, proactive legal services across seven practice areas.",
+      "An innovative law firm offering expedited, proactive legal services across six practice areas.",
   },
   {
     image: "/brand/hero/lobby.jpg",
@@ -31,7 +31,7 @@ const slides: Slide[] = [
     image: "/brand/hero/library.jpg",
     alt: "Close-up of law book spines on a library shelf",
     headline: ["Depth you", "can", "rely on."],
-    subhead: "Seven practice areas, held to one disciplined standard of counsel.",
+    subhead: "Six practice areas, held to one disciplined standard of counsel.",
   },
   {
     image: "/brand/hero/handshake.jpg",
@@ -120,15 +120,7 @@ export default function Hero() {
       {/* CONTENT */}
       <div className="relative z-20 mx-auto w-full max-w-7xl px-6 md:px-10">
         <motion.div style={{ y: textY }} className="max-w-2xl">
-          <motion.p
-            initial={{ opacity: 0 }}
-            animate={{ opacity: 1 }}
-            transition={{ delay: 0.3, duration: 1 }}
-            className="mb-6 flex items-center gap-4 text-xs uppercase tracking-[0.3em] text-gold"
-          >
-            <span className="h-px w-10 bg-gold" />
-            Law firm &middot; Abuja, Nigeria
-          </motion.p>
+         
 
           <AnimatePresence mode="wait">
             <div key={index}>

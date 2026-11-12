@@ -1,7 +1,9 @@
 "use client";
 
 import Link from "next/link";
+import { usePathname } from "next/navigation";
 import { useState } from "react";
+import { PRACTICE_AREAS, practiceAreaHref } from "@/lib/practice-areas";
 
 // Matches the firm's locked site structure: Home (logo), About Us, Practice
 // Areas, Team, Insights & Updates, Contact.
@@ -15,26 +17,52 @@ const links = [
 
 export default function Nav() {
   const [open, setOpen] = useState(false);
+  const pathname = usePathname();
 
   return (
     <header className="fixed inset-x-0 top-0 z-50 bg-ink/85 text-paper backdrop-blur-md">
       <nav className="mx-auto flex max-w-7xl items-center justify-between px-6 py-4 md:px-10">
         <Link href="/" className="group flex items-center gap-3" onClick={() => setOpen(false)}>
           {/* eslint-disable-next-line @next/next/no-img-element */}
-          <img src="/brand/logo-mark.png" alt="" className="h-10 w-10 transition-transform duration-500 group-hover:rotate-[-8deg]" />
+          <img src="/brand/pius-and-noble-logo.png" alt="" className="h-10 w-10 transition-transform duration-500 group-hover:rotate-[-8deg]" />
           <span className="font-display text-sm font-black leading-none tracking-wide">
             PIUS <span className="text-gold">&amp;</span> NOBLE
             <span className="block text-[0.6rem] font-medium tracking-[0.35em] text-paper/60">LEGAL PRACTITIONERS</span>
           </span>
         </Link>
 
-        <ul className="hidden items-center gap-10 text-sm md:flex">
-          {links.map((l) => (
-            <li key={l.label}>
-              <Link href={l.href} className="group relative py-1">
-                {l.label}
+        <ul className="hidden items-center gap-8 text-sm md:flex">
+          {pathname !== "/" && (
+            <li>
+              <Link href="/" className="group relative py-1">
+                Home
                 <span className="absolute inset-x-0 -bottom-0.5 h-px origin-left scale-x-0 bg-gold transition-transform duration-500 group-hover:scale-x-100" />
               </Link>
+            </li>
+          )}
+          {links.map((l) => (
+            <li key={l.label} className="group relative">
+              <Link href={l.href} className="relative flex items-center gap-1 py-1">
+                {l.label}
+                {l.label === "Practice areas" && <ChevronIcon />}
+                <span className="absolute inset-x-0 -bottom-0.5 h-px origin-left scale-x-0 bg-gold transition-transform duration-500 group-hover:scale-x-100" />
+              </Link>
+
+              {l.label === "Practice areas" && (
+                <div className="invisible absolute left-1/2 top-full -translate-x-1/2 translate-y-2 pt-3 opacity-0 transition-all duration-200 group-hover:visible group-hover:translate-y-0 group-hover:opacity-100">
+                  <div className="w-80 rounded-sm border border-paper/10 bg-ink p-2 shadow-2xl shadow-black/40">
+                    {PRACTICE_AREAS.map((a) => (
+                      <Link
+                        key={a.slug}
+                        href={practiceAreaHref(a.slug)}
+                        className="block rounded-sm px-4 py-2.5 text-sm text-paper/80 transition-colors hover:bg-paper/10 hover:text-gold"
+                      >
+                        {a.name}
+                      </Link>
+                    ))}
+                  </div>
+                </div>
+              )}
             </li>
           ))}
         </ul>
@@ -67,6 +95,17 @@ export default function Nav() {
       >
         <div className="overflow-hidden">
           <ul className="flex flex-col gap-1 px-6 py-6 text-base">
+            {pathname !== "/" && (
+              <li>
+                <Link
+                  href="/"
+                  onClick={() => setOpen(false)}
+                  className="block py-3 text-paper/90 transition-colors hover:text-gold"
+                >
+                  Home
+                </Link>
+              </li>
+            )}
             {links.map((l) => (
               <li key={l.label}>
                 <Link
@@ -82,5 +121,25 @@ export default function Nav() {
         </div>
       </div>
     </header>
+  );
+}
+
+function ChevronIcon() {
+  return (
+    <svg
+      xmlns="http://www.w3.org/2000/svg"
+      width="14"
+      height="14"
+      viewBox="0 0 24 24"
+      fill="none"
+      stroke="currentColor"
+      strokeWidth="2"
+      strokeLinecap="round"
+      strokeLinejoin="round"
+      aria-hidden
+      className="text-paper/60"
+    >
+      <path d="m6 9 6 6 6-6" />
+    </svg>
   );
 }

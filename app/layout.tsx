@@ -2,6 +2,7 @@ import type { Metadata } from "next";
 import localFont from "next/font/local";
 import { Archivo, Inter } from "next/font/google";
 import "./globals.css";
+import BackToTop from "@/components/back-to-top";
 
 // ITC Cheltenham Std, licensed by the client — the new display face.
 // Archivo moves to a secondary role (eyebrow labels); Inter stays for body copy.
@@ -34,7 +35,7 @@ const inter = Inter({
 export const metadata: Metadata = {
   title: "Pius & Noble LP",
   description:
-    "Trusted legal solutions with global standards. Seven practice areas, from AI and data privacy to corporate and real estate.",
+    "Trusted legal solutions with global standards. Six practice areas, from AI and data protection to corporate and real estate.",
   // Proposal draft: keep out of search results until the firm approves it.
   robots: { index: false, follow: false },
 };
@@ -44,7 +45,10 @@ export default function RootLayout({
 }: Readonly<{ children: React.ReactNode }>) {
   return (
     <html lang="en" className={`${cheltenham.variable} ${archivo.variable} ${inter.variable}`}>
-      <body>{children}</body>
+      <body>
+        {children}
+        <BackToTop />
+      </body>
     </html>
   );
 }

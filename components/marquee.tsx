@@ -1,13 +1,7 @@
-// Slow scrolling band of the seven practice areas, sitting between hero and content.
-const items = [
-  "Artificial Intelligence",
-  "Dispute Resolution",
-  "Corporate & Commercial",
-  "Data Privacy Advisory",
-  "Intellectual Property",
-  "Entertainment Law",
-  "Real Estate",
-];
+// Slow scrolling band of the practice areas, sitting between hero and content.
+import { PRACTICE_AREAS } from "@/lib/practice-areas";
+
+const items = PRACTICE_AREAS.map((a) => a.name);
 
 export default function Marquee() {
   const row = [...items, ...items];

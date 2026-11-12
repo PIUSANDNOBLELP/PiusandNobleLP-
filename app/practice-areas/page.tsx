@@ -7,7 +7,7 @@ import Capabilities from "@/components/capabilities";
 export const metadata = {
   title: "Practice Areas | Pius & Noble LP",
   description:
-    "Seven practice areas, one standard: AI, dispute resolution, corporate & commercial, data privacy, intellectual property, entertainment law and real estate.",
+    "Six practice areas, one standard: commercial & corporate law, real estate, litigation & dispute resolution, energy & natural resources, data protection and artificial intelligence.",
 };
 
 export default function PracticeAreasPage() {

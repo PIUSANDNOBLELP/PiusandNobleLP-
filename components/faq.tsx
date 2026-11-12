@@ -8,7 +8,7 @@ const questions = [
   },
   {
     q: "Do you advise businesses as well as individuals?",
-    a: "Yes. We work with individuals, families, start-ups and established companies across our seven practice areas.",
+    a: "Yes. We work with individuals, families, start-ups and established companies across our six practice areas.",
   },
   {
     q: "Can you help with AI and data protection questions?",

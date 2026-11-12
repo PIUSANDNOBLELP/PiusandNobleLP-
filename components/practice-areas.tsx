@@ -1,37 +1,28 @@
 "use client";
 
 import { useLayoutEffect, useRef } from "react";
+import Link from "next/link";
 import gsap from "gsap";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
+import { PRACTICE_AREAS, practiceAreaHref } from "@/lib/practice-areas";
 
 gsap.registerPlugin(ScrollTrigger);
 
-// Practice areas as the firm lists them on LinkedIn.
-// Notes are draft copy for the proposal and should be checked with the firm.
-const areas = [
-  { name: "Artificial Intelligence", note: "Legal advice on AI use, contracts and governance." },
-  { name: "Dispute Resolution", note: "Negotiation, arbitration and litigation support." },
-  { name: "Corporate & Commercial", note: "Company formation, agreements and commercial advice." },
-  { name: "Data Privacy Advisory", note: "Compliance with Nigeria's data protection framework." },
-  { name: "Intellectual Property", note: "Protecting brands, creative works and inventions." },
-  { name: "Entertainment Law", note: "Contracts and rights for artists and media businesses." },
-  { name: "Real Estate", note: "Property transactions, due diligence and documentation." },
-];
-
-// Stock photos from Unsplash (free to use), one per practice area. They're
-// illustrative and don't depict any real person or client.
-const images = [
-  "/photos/ai.jpg",
-  "/photos/dispute.jpg",
-  "/photos/corporate.jpg",
-  "/photos/privacy.jpg",
-  "/photos/ip.jpg",
-  "/photos/entertainment.jpg",
-  "/photos/realestate.jpg",
-];
+// Illustrative stock photos (free to use), one per practice area. They don't
+// depict any real person or client. "Energy and Natural Resources" reuses a
+// placeholder image pending a dedicated photo.
+const images: Record<string, string> = {
+  "commercial-and-corporate-law": "/photos/corporate.jpg",
+  "real-estate-and-property-law": "/photos/realestate.jpg",
+  "litigation-and-dispute-resolution": "/photos/dispute.jpg",
+  "energy-and-natural-resources": "/photos/ip.jpg",
+  "data-protection-and-privacy": "/photos/privacy.jpg",
+  "artificial-intelligence": "/photos/ai.jpg",
+};
 
 export default function PracticeAreas() {
   const ref = useRef<HTMLElement>(null);
+  const areas = PRACTICE_AREAS;
 
   useLayoutEffect(() => {
     const el = ref.current;
@@ -82,7 +73,7 @@ export default function PracticeAreas() {
     }, el);
 
     return () => ctx.revert();
-  }, []);
+  }, [areas.length]);
 
   return (
     <section ref={ref} id="practice" className="relative bg-paper">
@@ -93,31 +84,33 @@ export default function PracticeAreas() {
             Practice areas
           </p>
           <h2 className="font-display text-5xl font-normal leading-[0.95] md:text-6xl lg:text-[clamp(2.75rem,6.2vh,4.75rem)]">
-            Seven areas.<br />One standard.
+            Six areas.<br />One standard.
           </h2>
 
           <ol className="mt-10 border-t border-ink/15 lg:mt-[3vh]">
             {areas.map((a, i) => (
               <li
-                key={a.name}
-                className="pa-panel group relative border-b border-ink/15 py-5 transition-[opacity,transform] duration-700 lg:py-[1.1vh] [.is-pinned_&]:opacity-25 [.is-pinned_&.is-active]:translate-x-3 [.is-pinned_&.is-active]:opacity-100"
+                key={a.slug}
+                className="pa-panel relative border-b border-ink/15 py-5 transition-[opacity,transform] duration-700 lg:py-[1.1vh] [.is-pinned_&]:opacity-25 [.is-pinned_&.is-active]:translate-x-3 [.is-pinned_&.is-active]:opacity-100"
               >
-                <div className="flex items-baseline gap-5">
-                  <span className="font-display w-8 text-sm text-gold-deep transition-transform duration-500 group-hover:translate-x-1">
-                    0{i + 1}
-                  </span>
-                  <h3 className="font-display text-2xl font-bold transition-colors duration-500 group-hover:text-gold-deep md:text-3xl lg:text-[clamp(1.4rem,3.6vh,2.5rem)]">
-                    {a.name}
-                  </h3>
-                </div>
-                <p className="mt-2 pl-[3.25rem] text-sm text-mute [.is-pinned_&]:hidden">{a.note}</p>
-                <img
-                  src={images[i]}
-                  alt=""
-                  className="mt-6 aspect-[16/10] w-full object-cover [.is-pinned_&]:hidden"
-                />
-                {/* Gold line that sweeps across the row on hover */}
-                <span className="absolute inset-x-0 -bottom-px h-px origin-left scale-x-0 bg-gold transition-transform duration-700 ease-out group-hover:scale-x-100 [.is-pinned_&]:hidden" />
+                <Link href={practiceAreaHref(a.slug)} className="group block">
+                  <div className="flex items-baseline gap-5">
+                    <span className="font-display w-8 text-sm text-gold-deep transition-transform duration-500 group-hover:translate-x-1">
+                      0{i + 1}
+                    </span>
+                    <h3 className="font-display text-2xl font-bold transition-colors duration-500 group-hover:text-gold-deep md:text-3xl lg:text-[clamp(1.4rem,3.6vh,2.5rem)]">
+                      {a.name}
+                    </h3>
+                  </div>
+                  <p className="mt-2 pl-[3.25rem] text-sm text-mute [.is-pinned_&]:hidden">{a.note}</p>
+                  <img
+                    src={images[a.slug]}
+                    alt=""
+                    className="mt-6 aspect-[16/10] w-full object-cover [.is-pinned_&]:hidden"
+                  />
+                  {/* Gold line that sweeps across the row on hover */}
+                  <span className="absolute inset-x-0 -bottom-px h-px origin-left scale-x-0 bg-gold transition-transform duration-700 ease-out group-hover:scale-x-100 [.is-pinned_&]:hidden" />
+                </Link>
               </li>
             ))}
           </ol>
@@ -126,10 +119,10 @@ export default function PracticeAreas() {
         {/* Desktop graphic: shown only while the section is pinned */}
         <div className="pointer-events-none hidden [.is-pinned_&]:block">
           <div className="relative mx-auto h-[min(68svh,600px)] w-[min(100%,480px)] overflow-hidden bg-ink shadow-2xl shadow-black/30">
-            {images.map((src, i) => (
+            {areas.map((a, i) => (
               <img
-                key={src}
-                src={src}
+                key={a.slug}
+                src={images[a.slug]}
                 alt=""
                 className="pa-pic absolute inset-0 h-full w-full scale-[1.06] object-cover opacity-0 transition-all duration-700 ease-out [&.is-active]:scale-100 [&.is-active]:opacity-100"
                 style={{ zIndex: i }}
@@ -139,7 +132,7 @@ export default function PracticeAreas() {
           <div className="relative mx-auto mt-6 h-16 w-[min(100%,480px)]">
             {areas.map((a) => (
               <p
-                key={a.name}
+                key={a.slug}
                 className="pa-cap absolute inset-0 text-center font-display text-lg font-bold text-ink opacity-0 transition-opacity duration-500 [&.is-active]:opacity-100"
               >
                 {a.note}
