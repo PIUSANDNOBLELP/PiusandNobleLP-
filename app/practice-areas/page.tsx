@@ -3,6 +3,7 @@ import Footer from "@/components/footer";
 import PracticeAreas from "@/components/practice-areas";
 import PracticeAreaDetails from "@/components/practice-area-details";
 import Capabilities from "@/components/capabilities";
+import PracticeAreaScroll from "@/components/practice-area-scroll";
 
 export const metadata = {
   title: "Practice Areas | Pius & Noble LP",
@@ -15,6 +16,7 @@ export default function PracticeAreasPage() {
     <>
       <Nav />
       <main>
+        <PracticeAreaScroll />
         <PracticeAreas />
         <PracticeAreaDetails />
         <Capabilities />
