@@ -75,53 +75,53 @@ export default function AboutPage() {
         <About compact />
 
         {/* Vision & Mission */}
-        <section className="relative overflow-hidden bg-ink py-28 text-paper md:py-40">
-          <span
-            className="pointer-events-none absolute -left-10 top-1/2 -translate-y-1/2 select-none font-display text-[18rem] leading-none text-gold/5"
-            aria-hidden
-          >
-            ✶
-          </span>
-          <div className="relative mx-auto grid max-w-6xl items-center gap-14 px-6 md:grid-cols-[0.85fr_1.15fr] md:px-10">
+        <section className="bg-paper-deep py-28 md:py-40">
+          <div className="mx-auto max-w-6xl px-6 md:px-10">
             <Reveal>
-              <div className="relative">
-                <div className="aspect-[4/5] overflow-hidden rounded-sm">
-                  {/* eslint-disable-next-line @next/next/no-img-element */}
-                  <img
-                    src="/brand/hero/library.jpg"
-                    alt="Law books in a library"
-                    className="h-full w-full object-cover"
-                  />
-                </div>
-                <div
-                  className="absolute -bottom-4 -right-4 -z-10 h-full w-full rounded-sm border border-gold/40"
-                  aria-hidden
-                />
-              </div>
+              <p className="mb-12 flex items-center gap-4 text-xs uppercase tracking-[0.3em] text-gold-deep">
+                <span className="h-px w-10 bg-gold-deep" />
+                Vision &amp; Mission
+              </p>
             </Reveal>
 
-            <div>
+            <div className="grid gap-6 md:grid-cols-2">
+              {/* Vision — dark */}
               <Reveal>
-                <p className="mb-5 flex items-center gap-4 text-xs uppercase tracking-[0.3em] text-gold">
-                  <span className="h-px w-10 bg-gold" />
-                  Vision
-                </p>
-                <h2 className="font-display text-3xl font-normal leading-tight md:text-4xl">
-                  To be Africa&apos;s most trusted legal partner, distinguished by our commitment
-                  to swift, world-class solutions and unwavering client success.
-                </h2>
+                <article className="group relative flex h-full flex-col overflow-hidden rounded-sm bg-ink p-9 text-paper shadow-xl shadow-ink/10 transition-transform duration-500 hover:-translate-y-1.5 md:p-12">
+                  <span className="font-display text-5xl leading-none text-gold md:text-6xl" aria-hidden>
+                    ✦
+                  </span>
+                  <p className="mt-10 text-xs font-semibold uppercase tracking-[0.3em] text-gold">
+                    Vision
+                  </p>
+                  <h2 className="font-display mt-4 text-3xl font-normal leading-tight md:text-4xl">
+                    To be Africa&apos;s most trusted legal partner, distinguished by our commitment
+                    to swift, world-class solutions and unwavering client success.
+                  </h2>
+                  <span
+                    className="absolute inset-x-0 bottom-0 h-1 origin-left scale-x-0 bg-gold transition-transform duration-500 group-hover:scale-x-100"
+                    aria-hidden
+                  />
+                </article>
               </Reveal>
 
-              <div className="my-9 h-px bg-gold/25" aria-hidden />
-
-              <Reveal delay={0.1}>
-                <p className="mb-5 flex items-center gap-4 text-xs uppercase tracking-[0.3em] text-gold">
-                  <span className="h-px w-10 bg-gold" />
-                  Mission
-                </p>
-                <h2 className="font-display text-3xl font-normal leading-tight md:text-4xl">
-                  To be a world-class firm that provides quick legal solutions.
-                </h2>
+              {/* Mission — gold */}
+              <Reveal delay={0.12}>
+                <article className="group relative flex h-full flex-col overflow-hidden rounded-sm bg-gold p-9 text-ink shadow-xl shadow-ink/10 transition-transform duration-500 hover:-translate-y-1.5 md:p-12">
+                  <span className="font-display text-5xl leading-none text-ink/60 md:text-6xl" aria-hidden>
+                    ✦
+                  </span>
+                  <p className="mt-10 text-xs font-semibold uppercase tracking-[0.3em] text-ink/70">
+                    Mission
+                  </p>
+                  <h2 className="font-display mt-4 text-3xl font-normal leading-tight md:text-4xl">
+                    To be a world-class firm that provides quick legal solutions.
+                  </h2>
+                  <span
+                    className="absolute inset-x-0 bottom-0 h-1 origin-left scale-x-0 bg-ink transition-transform duration-500 group-hover:scale-x-100"
+                    aria-hidden
+                  />
+                </article>
               </Reveal>
             </div>
           </div>
