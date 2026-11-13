@@ -254,14 +254,14 @@ function MemberModal({
         role="dialog"
         aria-modal="true"
         aria-label={member.name}
-        className="relative z-10 flex max-h-[88vh] w-full max-w-4xl flex-col overflow-hidden rounded-sm bg-paper shadow-2xl md:h-[min(86vh,760px)] md:max-h-none md:flex-row"
+        className="relative z-10 flex max-h-[90vh] w-full max-w-5xl flex-col overflow-hidden rounded-sm bg-paper shadow-2xl md:h-[min(88vh,820px)] md:max-h-none md:flex-row"
         initial={{ opacity: 0, y: 32, scale: 0.97 }}
         animate={{ opacity: 1, y: 0, scale: 1 }}
         exit={{ opacity: 0, y: 32, scale: 0.97 }}
         transition={{ duration: reduced ? 0 : 0.3, ease: [0.16, 1, 0.3, 1] }}
       >
         {/* Image — full-height portrait on desktop, banner on mobile */}
-        <div className="relative h-60 shrink-0 overflow-hidden bg-ink md:h-full md:w-[42%]">
+        <div className="relative h-64 shrink-0 overflow-hidden bg-ink md:h-full md:w-[44%]">
           {member.photoUrl ? (
             // eslint-disable-next-line @next/next/no-img-element
             <img
@@ -271,34 +271,66 @@ function MemberModal({
             />
           ) : (
             <div className="flex h-full w-full items-center justify-center bg-gradient-to-br from-ink to-ink-soft">
-              <span className="font-display text-7xl font-black text-gold/80">{member.initials}</span>
+              <span className="font-display text-8xl font-black text-gold/80">{member.initials}</span>
             </div>
           )}
+          {/* subtle fade at the base + a thin gold edge on the content seam */}
+          <div
+            className="pointer-events-none absolute inset-x-0 bottom-0 h-28 bg-gradient-to-t from-ink/60 to-transparent"
+            aria-hidden
+          />
+          <div className="pointer-events-none absolute inset-y-0 right-0 w-px bg-gold/30" aria-hidden />
         </div>
 
         {/* Content — scrolls independently of the image */}
         <div className="no-scrollbar min-h-0 flex-1 overflow-y-auto">
           <div className="p-8 md:p-10">
-            <p className="text-xs uppercase tracking-[0.25em] text-gold-deep">{member.role}</p>
-            <h3 className="font-display mt-2 text-3xl font-black leading-tight md:text-4xl">
+            <p className="flex items-center gap-3 text-xs uppercase tracking-[0.3em] text-gold-deep">
+              <span className="h-px w-8 bg-gold-deep" />
+              {member.role}
+            </p>
+            <h3 className="font-display mt-3 text-4xl font-black leading-[0.95] text-ink md:text-5xl">
               {member.name}
             </h3>
 
+            <div className="mt-6 h-px w-16 bg-gold" aria-hidden />
+
             {member.qualifications && (
-              <p className="mt-3 text-base font-medium text-ink/70">{member.qualifications}</p>
+              <div className="mt-6 flex items-start gap-4 rounded-sm border border-gold/40 bg-gold/10 p-4">
+                <GraduationIcon />
+                <div>
+                  <p className="text-[0.65rem] font-semibold uppercase tracking-[0.22em] text-gold-deep">
+                    Qualifications
+                  </p>
+                  <p className="mt-1 text-sm font-medium leading-relaxed text-ink">
+                    {member.qualifications}
+                  </p>
+                </div>
+              </div>
             )}
 
             {expertise.length > 0 && (
-              <ul className="mt-4 flex flex-wrap gap-2">
-                {expertise.map((area) => (
-                  <li key={area} className="rounded-full border border-gold/40 px-3 py-1 text-sm text-gold-deep">
-                    {area}
-                  </li>
-                ))}
-              </ul>
+              <div className="mt-6">
+                <p className="text-[0.65rem] font-semibold uppercase tracking-[0.22em] text-gold-deep">
+                  Areas of expertise
+                </p>
+                <ul className="mt-3 flex flex-wrap gap-2">
+                  {expertise.map((area) => (
+                    <li
+                      key={area}
+                      className="flex items-center gap-2 rounded-sm border border-ink/15 bg-paper-deep px-3 py-1.5 text-xs font-medium text-ink/80"
+                    >
+                      <span className="text-gold-deep" aria-hidden>
+                        ✦
+                      </span>
+                      {area}
+                    </li>
+                  ))}
+                </ul>
+              </div>
             )}
 
-            <div className="mt-6 whitespace-pre-line text-lg leading-relaxed text-mute">
+            <div className="mt-6 whitespace-pre-line text-base leading-relaxed text-mute">
               {member.focus}
             </div>
           </div>
@@ -317,5 +349,27 @@ function MemberModal({
         </button>
       </motion.div>
     </motion.div>
+  );
+}
+
+function GraduationIcon() {
+  return (
+    <svg
+      xmlns="http://www.w3.org/2000/svg"
+      width="22"
+      height="22"
+      viewBox="0 0 24 24"
+      fill="none"
+      stroke="currentColor"
+      strokeWidth="1.5"
+      strokeLinecap="round"
+      strokeLinejoin="round"
+      className="mt-0.5 shrink-0 text-gold-deep"
+      aria-hidden
+    >
+      <path d="M22 10 12 5 2 10l10 5 10-5z" />
+      <path d="M6 12v5c0 1 2.5 3 6 3s6-2 6-3v-5" />
+      <path d="M22 10v6" />
+    </svg>
   );
 }
