@@ -5,7 +5,13 @@ import Reveal from "@/components/reveal";
 // navbar, footer and pinned-scroll can deep-link straight to it. Slugs must
 // match lib/practice-areas.ts. Copy is drawn from the firm's profile document;
 // confirm specifics with the firm before launch.
-const details = [
+const details: {
+  slug: string;
+  name: string;
+  body: string;
+  services: string[];
+  subAreas?: string[];
+}[] = [
   {
     slug: "commercial-and-corporate-law",
     name: "Commercial and Corporate Law",
@@ -16,6 +22,14 @@ const details = [
       "Taxation and company secretarial",
       "Employment and labour law",
       "Startups advisory",
+    ],
+    subAreas: [
+      "Technology, Privacy & Data Protection",
+      "Taxation",
+      "Intellectual Property",
+      "Entertainment Law",
+      "Employment & Labour Law",
+      "Startups Advisory",
     ],
   },
   {
@@ -108,6 +122,24 @@ export default function PracticeAreaDetails() {
                       </li>
                     ))}
                   </ul>
+
+                  {d.subAreas && (
+                    <div className="mt-6 border-t border-ink/10 pt-5">
+                      <p className="text-xs font-semibold uppercase tracking-[0.2em] text-gold-deep">
+                        Within this practice
+                      </p>
+                      <ul className="mt-3 grid gap-x-6 gap-y-2 sm:grid-cols-2">
+                        {d.subAreas.map((sub) => (
+                          <li key={sub} className="flex items-center gap-2 text-sm text-ink/70">
+                            <span className="text-gold-deep" aria-hidden>
+                              ✦
+                            </span>
+                            {sub}
+                          </li>
+                        ))}
+                      </ul>
+                    </div>
+                  )}
                 </div>
               </div>
             </Reveal>
