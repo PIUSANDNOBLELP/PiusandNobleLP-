@@ -1,37 +1,15 @@
+import Link from "next/link";
 import Nav from "@/components/nav";
 import Footer from "@/components/footer";
 import Reveal from "@/components/reveal";
 import { About } from "@/components/sections";
+import { PRACTICE_AREAS, practiceAreaHref } from "@/lib/practice-areas";
 
 export const metadata = {
   title: "About Us | Pius & Noble LP",
   description:
     "Pius & Noble LP is an Abuja-based law firm delivering cutting-edge legal solutions across commercial, real estate, litigation and ADR — built on excellence, efficiency, accessibility and personalised service.",
 };
-
-// Four core areas, drawn from the firm's profile document.
-const coreAreas = [
-  {
-    no: "01",
-    name: "Commercial and Corporate Law",
-    body: "Contracts, telecommunications, intellectual property, data protection, cybersecurity, taxation, company secretarial services and startup documentation.",
-  },
-  {
-    no: "02",
-    name: "Real Estate and Property Law",
-    body: "Real estate transactions, property management and regulatory compliance across acquisition and development.",
-  },
-  {
-    no: "03",
-    name: "Civil and Criminal Litigation",
-    body: "All aspects of litigation, from filing and advocacy through to appeals.",
-  },
-  {
-    no: "04",
-    name: "Alternative Dispute Resolution",
-    body: "Resolving disputes outside of court, leveraging the full breadth of our practice areas.",
-  },
-];
 
 const principles = [
   {
@@ -127,7 +105,7 @@ export default function AboutPage() {
           </div>
         </section>
 
-        {/* Who we are — four core areas */}
+        {/* Who we are — six practice areas */}
         <section className="bg-paper py-28 md:py-40">
           <div className="mx-auto max-w-6xl px-6 md:px-10">
             <Reveal>
@@ -136,27 +114,39 @@ export default function AboutPage() {
                 Who we are
               </p>
               <h2 className="font-display max-w-3xl text-4xl font-normal leading-[1.05] md:text-5xl">
-                Four core areas.<br />One disciplined standard.
+                Six practice areas.<br />One disciplined standard.
               </h2>
               <p className="mt-6 max-w-2xl text-lg leading-relaxed text-mute">
                 Pius &amp; Noble Legal Practitioners, based in Abuja, Nigeria, is a distinguished
-                law firm recognised for its comprehensive legal services. Our practice is
-                segmented into four core areas, delivered by a robust team of seasoned
-                professionals committed to cutting-edge legal solutions for local and
-                international clientele across various sectors.
+                law firm recognised for its comprehensive legal services. Our practice spans six
+                areas, delivered by a robust team of seasoned professionals committed to
+                cutting-edge legal solutions for local and international clientele.
               </p>
             </Reveal>
 
-            <div className="mt-16 grid gap-px overflow-hidden rounded-sm bg-ink/10 md:grid-cols-2 lg:grid-cols-4">
-              {coreAreas.map((a, i) => (
-                <Reveal key={a.no} delay={i * 0.08}>
-                  <div className="group flex h-full flex-col bg-paper-deep p-8 transition-colors duration-500 hover:bg-paper">
-                    <span className="font-display text-5xl font-black text-ink/10 transition-colors duration-500 group-hover:text-gold-deep/40">
-                      {a.no}
-                    </span>
-                    <h3 className="font-display mt-6 text-xl font-bold leading-tight">{a.name}</h3>
-                    <p className="mt-3 text-sm leading-relaxed text-mute">{a.body}</p>
-                  </div>
+            <div className="mt-16 grid gap-px overflow-hidden rounded-sm bg-ink/10 md:grid-cols-2 lg:grid-cols-3">
+              {PRACTICE_AREAS.map((a, i) => (
+                <Reveal key={a.slug} delay={i * 0.06}>
+                  <Link
+                    href={practiceAreaHref(a.slug)}
+                    className="group flex h-full flex-col bg-paper-deep p-8 transition-colors duration-500 hover:bg-paper"
+                  >
+                    <div className="flex items-start justify-between">
+                      <span className="font-display text-5xl font-black text-ink/10 transition-colors duration-500 group-hover:text-gold-deep/40">
+                        {String(i + 1).padStart(2, "0")}
+                      </span>
+                      <span
+                        className="text-xl text-ink/20 transition-all duration-500 group-hover:translate-x-1 group-hover:text-gold-deep"
+                        aria-hidden
+                      >
+                        →
+                      </span>
+                    </div>
+                    <h3 className="font-display mt-6 text-xl font-bold leading-tight transition-colors duration-500 group-hover:text-gold-deep">
+                      {a.name}
+                    </h3>
+                    <p className="mt-3 text-sm leading-relaxed text-mute">{a.note}</p>
+                  </Link>
                 </Reveal>
               ))}
             </div>
