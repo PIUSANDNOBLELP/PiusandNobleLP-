@@ -90,8 +90,22 @@ body {
   }
 }
 
+/* Hide scrollbars app-wide — the main page scrollbar and every scrollable
+   container (covers Chrome/Safari/Edge via ::-webkit-scrollbar, Firefox via
+   scrollbar-width, and legacy IE/Edge via -ms-overflow-style). */
+* {
+  scrollbar-width: none;
+  -ms-overflow-style: none;
+}
+
+*::-webkit-scrollbar {
+  display: none;
+}
+
+/* Explicit utility (kept for clarity where a scroll region is intentional). */
 .no-scrollbar {
   scrollbar-width: none;
+  -ms-overflow-style: none;
 }
 
 .no-scrollbar::-webkit-scrollbar {
