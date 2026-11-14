@@ -9,14 +9,15 @@ import { PRACTICE_AREAS, practiceAreaHref } from "@/lib/practice-areas";
 gsap.registerPlugin(ScrollTrigger);
 
 // Illustrative stock photos (free to use), one per practice area. They don't
-// depict any real person or client. "Energy and Natural Resources" reuses a
-// placeholder image pending a dedicated photo.
+// depict any real person or client. Refinery shot is public domain (Carol M.
+// Highsmith / Library of Congress); the server-racks shot is CC BY 2.0 by Carl
+// Lender (credited in the footer).
 const images: Record<string, string> = {
   "commercial-and-corporate-law": "/photos/corporate.jpg",
   "real-estate-and-property-law": "/photos/realestate.jpg",
   "litigation-and-dispute-resolution": "/photos/dispute.jpg",
-  "energy-and-natural-resources": "/photos/ip.jpg",
-  "data-protection-and-privacy": "/photos/privacy.jpg",
+  "energy-and-natural-resources": "/photos/energy.jpg",
+  "data-protection-and-privacy": "/photos/cyber.jpg",
   "artificial-intelligence": "/photos/ai.jpg",
 };
 

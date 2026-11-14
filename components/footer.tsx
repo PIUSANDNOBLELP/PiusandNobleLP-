@@ -126,8 +126,12 @@ export default function Footer() {
             Proposal draft, not for publication. Stock photos from{" "}
             <a href="https://unsplash.com" className="underline transition-colors hover:text-gold">
               Unsplash
-            </a>
-            .
+            </a>{" "}
+            and{" "}
+            <a href="https://commons.wikimedia.org" className="underline transition-colors hover:text-gold">
+              Wikimedia Commons
+            </a>{" "}
+            (data-centre image by Carl Lender, CC BY 2.0).
           </p>
         </div>
       </div>
