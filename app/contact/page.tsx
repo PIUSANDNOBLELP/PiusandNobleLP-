@@ -15,50 +15,75 @@ export default function ContactPage() {
     <>
       <Nav />
       <main className="bg-paper pt-24">
-        <div className="mx-auto grid max-w-7xl gap-16 px-6 pb-24 md:px-10 lg:grid-cols-2">
-          <div>
-            <p className="mb-6 text-xs uppercase tracking-[0.3em] text-gold-deep">Contact</p>
-            <h1 className="font-display text-6xl font-black leading-[0.95] md:text-8xl">Start the conversation.</h1>
-            <p className="mt-8 max-w-md text-lg text-mute">
-              Tell us what you&apos;re working on. We&apos;ll reply with next steps and a clear timeline.
-            </p>
+        <div className="mx-auto max-w-7xl px-6 pb-24 md:px-10">
+          <div className="grid gap-14 lg:grid-cols-[1fr_1.05fr] lg:items-start lg:gap-20">
+            {/* Left — intro + contact details */}
+            <div className="min-w-0">
+              <p className="mb-6 text-xs uppercase tracking-[0.3em] text-gold-deep">Contact</p>
+              <h1 className="font-display max-w-xl text-4xl font-black leading-[0.96] tracking-tight break-words md:text-5xl lg:text-6xl">
+                Start the conversation.
+              </h1>
+              <p className="mt-8 max-w-md text-lg leading-relaxed text-mute">
+                Tell us what you&apos;re working on. We&apos;ll reply with next steps and a clear
+                timeline.
+              </p>
 
-            <div className="mt-12 space-y-6">
-              <div className="flex items-start gap-4">
-                <MapPinIcon />
-                <div>
-                  <p className="text-xs uppercase tracking-[0.2em] text-mute">Office</p>
-                  <p className="mt-1 max-w-sm text-lg text-ink">
-                    Suite E3, UYK HexaHub Nig. Ltd
-                    <br />
-                    Plot 1077A, Balanga Crescent
-                    <br />
-                    Area 11, Garki, Abuja
-                  </p>
+              <div className="mt-12 space-y-7">
+                <div className="flex items-start gap-4">
+                  <MapPinIcon />
+                  <div>
+                    <p className="text-xs uppercase tracking-[0.2em] text-mute">Office</p>
+                    <p className="mt-1 max-w-sm text-base leading-relaxed text-ink md:text-lg">
+                      Suite E3, UYK HexaHub Nig. Ltd
+                      <br />
+                      Plot 1077A, Balanga Crescent
+                      <br />
+                      Area 11, Garki, Abuja
+                    </p>
+                  </div>
+                </div>
+
+                <div className="flex items-start gap-4">
+                  <MailIcon />
+                  <div className="min-w-0">
+                    <p className="text-xs uppercase tracking-[0.2em] text-mute">Email</p>
+                    <a
+                      href={`mailto:${FIRM_EMAIL}`}
+                      className="mt-1 block break-words text-base text-ink transition-colors hover:text-gold-deep md:text-lg"
+                    >
+                      {FIRM_EMAIL}
+                    </a>
+                  </div>
+                </div>
+
+                <div className="flex items-start gap-4">
+                  <PhoneIcon />
+                  <div>
+                    <p className="text-xs uppercase tracking-[0.2em] text-mute">Phone</p>
+                    <a
+                      href={`tel:${FIRM_PHONE.replace(/-/g, "")}`}
+                      className="mt-1 block text-base text-ink transition-colors hover:text-gold-deep md:text-lg"
+                    >
+                      {FIRM_PHONE}
+                    </a>
+                  </div>
                 </div>
               </div>
-              <div className="flex items-start gap-4">
-                <MailIcon />
-                <div>
-                  <p className="text-xs uppercase tracking-[0.2em] text-mute">Email</p>
-                  <a href={`mailto:${FIRM_EMAIL}`} className="mt-1 block text-lg text-ink transition-colors hover:text-gold-deep">
-                    {FIRM_EMAIL}
-                  </a>
-                </div>
-              </div>
-              <div className="flex items-start gap-4">
-                <PhoneIcon />
-                <div>
-                  <p className="text-xs uppercase tracking-[0.2em] text-mute">Phone</p>
-                  <a href={`tel:${FIRM_PHONE.replace(/-/g, "")}`} className="mt-1 block text-lg text-ink transition-colors hover:text-gold-deep">
-                    {FIRM_PHONE}
-                  </a>
+            </div>
+
+            {/* Right — form */}
+            <div className="min-w-0">
+              <div className="rounded-sm border border-ink/10 bg-paper-deep p-6 md:p-9">
+                <p className="font-display text-2xl font-bold md:text-3xl">Send us a message</p>
+                <p className="mt-2 text-sm leading-relaxed text-mute">
+                  Fill in the form and it lands straight in our inbox.
+                </p>
+                <div className="mt-7">
+                  <ContactForm />
                 </div>
               </div>
             </div>
           </div>
-
-          <ContactForm />
         </div>
       </main>
       <Footer />
