@@ -53,7 +53,7 @@ export function ContactForm() {
   if (status === "sent") {
     return (
       <div className="rounded-sm border border-gold/50 bg-gold/10 p-8 md:p-10">
-        <p className="font-display text-2xl font-bold text-ink md:text-3xl">Thank you — message sent.</p>
+        <p className="font-display text-2xl font-normal text-ink md:text-3xl">Thank you — message sent.</p>
         <p className="mt-3 text-sm leading-relaxed text-mute md:text-base">
           We&apos;ve received your enquiry and will come back to you shortly with next steps.
         </p>
@@ -136,16 +136,25 @@ export function ContactForm() {
         <p className="rounded-sm border border-red-200 bg-red-50 p-3 text-sm text-red-700">{error}</p>
       )}
 
-      <div className="flex flex-wrap items-center gap-4">
-        <button
-          type="submit"
-          disabled={sending}
-          className="rounded-full bg-ink px-9 py-4 text-base text-paper transition-transform hover:-translate-y-0.5 disabled:cursor-not-allowed disabled:opacity-60"
-        >
+      <button
+        type="submit"
+        disabled={sending}
+        className="group relative inline-flex items-center gap-3 overflow-hidden rounded-full bg-ink px-9 py-4 text-base font-medium text-paper transition-transform duration-300 hover:-translate-y-0.5 disabled:cursor-not-allowed disabled:opacity-60"
+      >
+        <span
+          className="absolute inset-0 origin-left scale-x-0 bg-gold transition-transform duration-500 ease-out group-hover:scale-x-100"
+          aria-hidden
+        />
+        <span className="relative transition-colors duration-300 group-hover:text-ink">
           {sending ? "Sending…" : "Send message"}
-        </button>
-        <p className="text-xs text-mute">We reply within one business day.</p>
-      </div>
+        </span>
+        <span
+          className="relative transition-all duration-300 group-hover:translate-x-1 group-hover:text-ink"
+          aria-hidden
+        >
+          →
+        </span>
+      </button>
     </form>
   );
 }
