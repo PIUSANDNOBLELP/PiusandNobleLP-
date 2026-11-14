@@ -8,10 +8,9 @@ import { PRACTICE_AREAS, practiceAreaHref } from "@/lib/practice-areas";
 
 gsap.registerPlugin(ScrollTrigger);
 
-// Illustrative stock photos (free to use), one per practice area. They don't
-// depict any real person or client. Refinery shot is public domain (Carol M.
-// Highsmith / Library of Congress); the server-racks shot is CC BY 2.0 by Carl
-// Lender (credited in the footer).
+// Illustrative stock photos, one per practice area. They don't depict any real
+// person or client. Refinery shot is public domain (Carol M. Highsmith /
+// Library of Congress); the data-protection image was supplied by the firm.
 const images: Record<string, string> = {
   "commercial-and-corporate-law": "/photos/corporate.jpg",
   "real-estate-and-property-law": "/photos/realestate.jpg",

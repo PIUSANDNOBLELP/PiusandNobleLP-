@@ -131,7 +131,7 @@ export default function Footer() {
             <a href="https://commons.wikimedia.org" className="underline transition-colors hover:text-gold">
               Wikimedia Commons
             </a>{" "}
-            (data-centre image by Carl Lender, CC BY 2.0).
+            (data-protection image supplied by the firm).
           </p>
         </div>
       </div>
