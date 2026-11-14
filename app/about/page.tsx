@@ -3,6 +3,7 @@ import Nav from "@/components/nav";
 import Footer from "@/components/footer";
 import Reveal from "@/components/reveal";
 import { About } from "@/components/sections";
+import { Eye, Target } from "lucide-react";
 import { PRACTICE_AREAS, practiceAreaHref } from "@/lib/practice-areas";
 
 export const metadata = {
@@ -66,9 +67,11 @@ export default function AboutPage() {
               {/* Vision — dark */}
               <Reveal>
                 <article className="group relative flex h-full flex-col overflow-hidden rounded-sm bg-ink p-9 text-paper shadow-xl shadow-ink/10 transition-transform duration-500 hover:-translate-y-1.5 md:p-12">
-                  <span className="font-display text-5xl leading-none text-gold md:text-6xl" aria-hidden>
-                    ✦
-                  </span>
+                  <Eye
+                    className="h-12 w-12 text-gold transition-transform duration-500 group-hover:scale-110 md:h-14 md:w-14"
+                    strokeWidth={1.5}
+                    aria-hidden
+                  />
                   <p className="mt-10 text-xs font-semibold uppercase tracking-[0.3em] text-gold">
                     Vision
                   </p>
@@ -86,9 +89,11 @@ export default function AboutPage() {
               {/* Mission — gold */}
               <Reveal delay={0.12}>
                 <article className="group relative flex h-full flex-col overflow-hidden rounded-sm bg-gold p-9 text-ink shadow-xl shadow-ink/10 transition-transform duration-500 hover:-translate-y-1.5 md:p-12">
-                  <span className="font-display text-5xl leading-none text-ink/60 md:text-6xl" aria-hidden>
-                    ✦
-                  </span>
+                  <Target
+                    className="h-12 w-12 text-ink/60 transition-transform duration-500 group-hover:scale-110 md:h-14 md:w-14"
+                    strokeWidth={1.5}
+                    aria-hidden
+                  />
                   <p className="mt-10 text-xs font-semibold uppercase tracking-[0.3em] text-ink/70">
                     Mission
                   </p>
