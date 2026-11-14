@@ -1,26 +1,28 @@
 import Reveal from "@/components/reveal";
 
-// Answers are draft wording. Check each one with the firm before launch.
+// The firm's profile document has no FAQ section — these answers are drawn from
+// the document's About Us, Areas of Practice, Client Services and Contact
+// sections. Confirm the final wording with the firm before launch.
 const questions = [
   {
     q: "How do I book a consultation?",
-    a: "Use the 'Book a consultation' button or the contact form. We reply with the next available times and what to prepare.",
+    a: "Use the 'Book a consultation' button or the contact form, or reach us directly at piusowho@piusandnoblelp.com or +234-8080638471. We reply with the next available times and what to prepare.",
   },
   {
     q: "Do you advise businesses as well as individuals?",
-    a: "Yes. We work with individuals, families, start-ups and established companies across our six practice areas.",
+    a: "Yes. We advise individuals, families, start-ups and established businesses across our six practice areas — from commercial and corporate law to real estate, litigation and dispute resolution.",
   },
   {
     q: "Can you help with AI and data protection questions?",
-    a: "Yes. Our practice covers the legal side of AI use, contracts and governance, and Nigeria's data protection framework.",
+    a: "Yes. We advise on AI governance and risk under Nigeria's National Artificial Intelligence Strategy (NAIS) and NITDA guidelines, and on data-protection compliance under the NDPA 2023 and its GAID 2025 — including audits, Compliance Audit Return (CAR) filings with the NDPC and breach response.",
   },
   {
     q: "What does it cost?",
-    a: "Fees depend on the matter. We give you a clear estimate and timeline before any work begins.",
+    a: "Fees depend on the matter and its complexity. We agree a clear scope, estimate and timeline with you before any work begins, so there are no surprises.",
   },
   {
     q: "Do you work outside Abuja?",
-    a: "XXXXXXXXXXXX XXXXXXXXXX XXXXXXXXXXXXXX XXXXXXXX XXXXXXXXXXX.",
+    a: "Yes. Our office is in Abuja, but we serve clients across Nigeria and internationally — with a global reach and a deep understanding of both international and local law.",
   },
 ];
 
