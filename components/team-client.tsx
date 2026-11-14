@@ -254,49 +254,76 @@ function MemberModal({
         role="dialog"
         aria-modal="true"
         aria-label={member.name}
-        className="relative z-10 flex max-h-[90vh] w-full max-w-5xl flex-col overflow-hidden rounded-sm bg-paper shadow-2xl md:h-[min(88vh,820px)] md:max-h-none md:flex-row"
-        initial={{ opacity: 0, y: 32, scale: 0.97 }}
+        className="relative z-10 flex h-[92vh] w-[min(96vw,1440px)] flex-col overflow-hidden rounded-sm bg-paper shadow-2xl md:flex-row"
+        initial={{ opacity: 0, y: 48, scale: 0.95 }}
         animate={{ opacity: 1, y: 0, scale: 1 }}
-        exit={{ opacity: 0, y: 32, scale: 0.97 }}
-        transition={{ duration: reduced ? 0 : 0.3, ease: [0.16, 1, 0.3, 1] }}
+        exit={{ opacity: 0, y: 48, scale: 0.95 }}
+        transition={{ duration: reduced ? 0 : 0.45, ease: [0.16, 1, 0.3, 1] }}
       >
-        {/* Image — full-height portrait on desktop, banner on mobile */}
-        <div className="relative h-64 shrink-0 overflow-hidden bg-ink md:h-full md:w-[44%]">
+        {/* Image — full-bleed portrait on desktop, banner on mobile */}
+        <div className="relative h-[34vh] shrink-0 overflow-hidden bg-ink md:h-full md:w-[44%]">
           {member.photoUrl ? (
-            // eslint-disable-next-line @next/next/no-img-element
-            <img
+            <motion.img
               src={member.photoUrl}
               alt={member.name}
               className="absolute inset-0 h-full w-full object-cover object-top"
+              initial={{ scale: 1.08 }}
+              animate={{ scale: 1 }}
+              transition={{ duration: reduced ? 0 : 1.4, ease: [0.16, 1, 0.3, 1] }}
             />
           ) : (
             <div className="flex h-full w-full items-center justify-center bg-gradient-to-br from-ink to-ink-soft">
-              <span className="font-display text-8xl font-black text-gold/80">{member.initials}</span>
+              <span className="font-display text-9xl font-normal text-gold/80">{member.initials}</span>
             </div>
           )}
-          {/* subtle fade at the base + a thin gold edge on the content seam */}
           <div
-            className="pointer-events-none absolute inset-x-0 bottom-0 h-28 bg-gradient-to-t from-ink/60 to-transparent"
+            className="pointer-events-none absolute inset-0 bg-gradient-to-t from-ink/85 via-ink/10 to-transparent"
             aria-hidden
           />
           <div className="pointer-events-none absolute inset-y-0 right-0 w-px bg-gold/30" aria-hidden />
+          <div className="absolute left-6 top-6 flex items-center gap-2 md:left-8 md:top-8">
+            <span className="h-1.5 w-1.5 rounded-full bg-gold" aria-hidden />
+            <span className="text-[0.6rem] uppercase tracking-[0.3em] text-paper/70">Pius &amp; Noble LP</span>
+          </div>
         </div>
 
         {/* Content — scrolls independently of the image */}
         <div className="no-scrollbar min-h-0 flex-1 overflow-y-auto">
-          <div className="p-8 md:p-10">
-            <p className="flex items-center gap-3 text-xs uppercase tracking-[0.3em] text-gold-deep">
+          <div className="flex min-h-full flex-col p-8 md:p-12">
+            <motion.p
+              className="flex items-center gap-3 text-xs uppercase tracking-[0.3em] text-gold-deep"
+              initial={{ opacity: 0, y: 16 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ duration: reduced ? 0 : 0.5, delay: reduced ? 0 : 0.1, ease: [0.16, 1, 0.3, 1] }}
+            >
               <span className="h-px w-8 bg-gold-deep" />
               {member.role}
-            </p>
-            <h3 className="font-display mt-3 text-4xl font-black leading-[0.95] text-ink md:text-5xl">
-              {member.name}
-            </h3>
+            </motion.p>
 
-            <div className="mt-6 h-px w-16 bg-gold" aria-hidden />
+            <motion.h3
+              className="font-display mt-3 text-4xl font-normal leading-[0.95] text-ink md:text-6xl"
+              initial={{ opacity: 0, y: 20 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ duration: reduced ? 0 : 0.6, delay: reduced ? 0 : 0.16, ease: [0.16, 1, 0.3, 1] }}
+            >
+              {member.name}
+            </motion.h3>
+
+            <motion.div
+              className="mt-6 h-px w-16 origin-left bg-gold"
+              aria-hidden
+              initial={{ scaleX: 0 }}
+              animate={{ scaleX: 1 }}
+              transition={{ duration: reduced ? 0 : 0.7, delay: reduced ? 0 : 0.22, ease: [0.16, 1, 0.3, 1] }}
+            />
 
             {member.qualifications && (
-              <div className="mt-6 flex items-start gap-4 rounded-sm border border-gold/40 bg-gold/10 p-4">
+              <motion.div
+                className="mt-6 flex items-start gap-4 rounded-sm border border-gold/40 bg-gold/10 p-4"
+                initial={{ opacity: 0, y: 18 }}
+                animate={{ opacity: 1, y: 0 }}
+                transition={{ duration: reduced ? 0 : 0.55, delay: reduced ? 0 : 0.28, ease: [0.16, 1, 0.3, 1] }}
+              >
                 <GraduationIcon />
                 <div>
                   <p className="text-[0.65rem] font-semibold uppercase tracking-[0.22em] text-gold-deep">
@@ -306,11 +333,16 @@ function MemberModal({
                     {member.qualifications}
                   </p>
                 </div>
-              </div>
+              </motion.div>
             )}
 
             {expertise.length > 0 && (
-              <div className="mt-6">
+              <motion.div
+                className="mt-6"
+                initial={{ opacity: 0, y: 18 }}
+                animate={{ opacity: 1, y: 0 }}
+                transition={{ duration: reduced ? 0 : 0.55, delay: reduced ? 0 : 0.34, ease: [0.16, 1, 0.3, 1] }}
+              >
                 <p className="text-[0.65rem] font-semibold uppercase tracking-[0.22em] text-gold-deep">
                   Areas of expertise
                 </p>
@@ -327,12 +359,17 @@ function MemberModal({
                     </li>
                   ))}
                 </ul>
-              </div>
+              </motion.div>
             )}
 
-            <div className="mt-6 whitespace-pre-line text-base leading-relaxed text-mute">
+            <motion.div
+              className="mt-8 whitespace-pre-line text-base leading-relaxed text-mute md:text-[1.0625rem]"
+              initial={{ opacity: 0, y: 18 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ duration: reduced ? 0 : 0.6, delay: reduced ? 0 : 0.4, ease: [0.16, 1, 0.3, 1] }}
+            >
               {member.focus}
-            </div>
+            </motion.div>
           </div>
         </div>
 
@@ -341,7 +378,7 @@ function MemberModal({
           type="button"
           onClick={onClose}
           aria-label="Close"
-          className="absolute right-4 top-4 z-20 flex h-10 w-10 items-center justify-center rounded-full bg-ink/70 text-paper backdrop-blur-sm transition-colors hover:bg-gold hover:text-ink md:right-6 md:top-6"
+          className="absolute right-4 top-4 z-30 flex h-11 w-11 items-center justify-center rounded-full bg-paper/90 text-ink shadow-lg backdrop-blur transition-colors hover:bg-gold md:right-6 md:top-6"
         >
           <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" aria-hidden>
             <path d="M18 6 6 18M6 6l12 12" />
