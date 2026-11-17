@@ -90,19 +90,36 @@ body {
   }
 }
 
-/* Hide scrollbars app-wide — the main page scrollbar and every scrollable
-   container (covers Chrome/Safari/Edge via ::-webkit-scrollbar, Firefox via
-   scrollbar-width, and legacy IE/Edge via -ms-overflow-style). */
-* {
-  scrollbar-width: none;
-  -ms-overflow-style: none;
+/* Page scrollbar — restored, but with a stable gutter so locking scroll while a
+   modal is open (team-member profile) doesn't shift the page underneath. */
+html {
+  scrollbar-gutter: stable;
+  scrollbar-width: thin;
+  scrollbar-color: var(--color-mute) transparent;
 }
 
-*::-webkit-scrollbar {
-  display: none;
+::-webkit-scrollbar {
+  width: 10px;
+  height: 10px;
 }
 
-/* Explicit utility (kept for clarity where a scroll region is intentional). */
+::-webkit-scrollbar-track {
+  background: transparent;
+}
+
+::-webkit-scrollbar-thumb {
+  background-color: rgba(111, 104, 92, 0.45);
+  border: 2px solid transparent;
+  border-radius: 9999px;
+  background-clip: content-box;
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background-color: var(--color-gold-deep);
+  background-clip: content-box;
+}
+
+/* Explicit utility for regions whose scrollbar should stay hidden. */
 .no-scrollbar {
   scrollbar-width: none;
   -ms-overflow-style: none;

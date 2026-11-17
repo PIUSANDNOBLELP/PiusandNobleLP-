@@ -218,14 +218,21 @@ function MemberModal({
   const expertise = expertiseList(member);
 
   useEffect(() => {
-    const prev = document.body.style.overflow;
-    document.body.style.overflow = "hidden";
+    const html = document.documentElement;
+    const body = document.body;
+    const prevHtml = html.style.overflow;
+    const prevBody = body.style.overflow;
+    // Lock scrolling without a layout shift: `scrollbar-gutter: stable` on the
+    // root keeps the scrollbar's space reserved while overflow is hidden.
+    html.style.overflow = "hidden";
+    body.style.overflow = "hidden";
     const onKey = (e: KeyboardEvent) => {
       if (e.key === "Escape") onClose();
     };
     window.addEventListener("keydown", onKey);
     return () => {
-      document.body.style.overflow = prev;
+      html.style.overflow = prevHtml;
+      body.style.overflow = prevBody;
       window.removeEventListener("keydown", onKey);
     };
   }, [onClose]);
@@ -258,7 +265,7 @@ function MemberModal({
         initial={{ opacity: 0, y: 48, scale: 0.95 }}
         animate={{ opacity: 1, y: 0, scale: 1 }}
         exit={{ opacity: 0, y: 48, scale: 0.95 }}
-        transition={{ duration: reduced ? 0 : 0.45, ease: [0.16, 1, 0.3, 1] }}
+        transition={{ duration: reduced ? 0 : 0.75, ease: [0.16, 1, 0.3, 1] }}
       >
         {/* Image — full-bleed portrait on desktop, banner on mobile */}
         <div className="relative h-[34vh] shrink-0 overflow-hidden bg-ink md:h-full md:w-[44%]">
@@ -269,7 +276,7 @@ function MemberModal({
               className="absolute inset-0 h-full w-full object-cover object-top"
               initial={{ scale: 1.08 }}
               animate={{ scale: 1 }}
-              transition={{ duration: reduced ? 0 : 1.4, ease: [0.16, 1, 0.3, 1] }}
+              transition={{ duration: reduced ? 0 : 2.2, ease: [0.16, 1, 0.3, 1] }}
             />
           ) : (
             <div className="flex h-full w-full items-center justify-center bg-gradient-to-br from-ink to-ink-soft">
@@ -294,7 +301,7 @@ function MemberModal({
               className="flex items-center gap-3 text-xs uppercase tracking-[0.3em] text-gold-deep"
               initial={{ opacity: 0, y: 16 }}
               animate={{ opacity: 1, y: 0 }}
-              transition={{ duration: reduced ? 0 : 0.5, delay: reduced ? 0 : 0.1, ease: [0.16, 1, 0.3, 1] }}
+              transition={{ duration: reduced ? 0 : 0.7, delay: reduced ? 0 : 0.25, ease: [0.16, 1, 0.3, 1] }}
             >
               <span className="h-px w-8 bg-gold-deep" />
               {member.role}
@@ -304,7 +311,7 @@ function MemberModal({
               className="font-display mt-3 text-4xl font-normal leading-[0.95] text-ink md:text-6xl"
               initial={{ opacity: 0, y: 20 }}
               animate={{ opacity: 1, y: 0 }}
-              transition={{ duration: reduced ? 0 : 0.6, delay: reduced ? 0 : 0.16, ease: [0.16, 1, 0.3, 1] }}
+              transition={{ duration: reduced ? 0 : 0.8, delay: reduced ? 0 : 0.38, ease: [0.16, 1, 0.3, 1] }}
             >
               {member.name}
             </motion.h3>
@@ -314,7 +321,7 @@ function MemberModal({
               aria-hidden
               initial={{ scaleX: 0 }}
               animate={{ scaleX: 1 }}
-              transition={{ duration: reduced ? 0 : 0.7, delay: reduced ? 0 : 0.22, ease: [0.16, 1, 0.3, 1] }}
+              transition={{ duration: reduced ? 0 : 0.9, delay: reduced ? 0 : 0.5, ease: [0.16, 1, 0.3, 1] }}
             />
 
             {member.qualifications && (
@@ -322,7 +329,7 @@ function MemberModal({
                 className="mt-6 flex items-start gap-4 rounded-sm border border-gold/40 bg-gold/10 p-4"
                 initial={{ opacity: 0, y: 18 }}
                 animate={{ opacity: 1, y: 0 }}
-                transition={{ duration: reduced ? 0 : 0.55, delay: reduced ? 0 : 0.28, ease: [0.16, 1, 0.3, 1] }}
+                transition={{ duration: reduced ? 0 : 0.7, delay: reduced ? 0 : 0.62, ease: [0.16, 1, 0.3, 1] }}
               >
                 <GraduationIcon />
                 <div>
@@ -341,7 +348,7 @@ function MemberModal({
                 className="mt-6"
                 initial={{ opacity: 0, y: 18 }}
                 animate={{ opacity: 1, y: 0 }}
-                transition={{ duration: reduced ? 0 : 0.55, delay: reduced ? 0 : 0.34, ease: [0.16, 1, 0.3, 1] }}
+                transition={{ duration: reduced ? 0 : 0.7, delay: reduced ? 0 : 0.74, ease: [0.16, 1, 0.3, 1] }}
               >
                 <p className="text-[0.65rem] font-semibold uppercase tracking-[0.22em] text-gold-deep">
                   Areas of expertise
@@ -366,7 +373,7 @@ function MemberModal({
               className="mt-8 whitespace-pre-line text-base leading-relaxed text-mute md:text-[1.0625rem]"
               initial={{ opacity: 0, y: 18 }}
               animate={{ opacity: 1, y: 0 }}
-              transition={{ duration: reduced ? 0 : 0.6, delay: reduced ? 0 : 0.4, ease: [0.16, 1, 0.3, 1] }}
+              transition={{ duration: reduced ? 0 : 0.8, delay: reduced ? 0 : 0.86, ease: [0.16, 1, 0.3, 1] }}
             >
               {member.focus}
             </motion.div>
