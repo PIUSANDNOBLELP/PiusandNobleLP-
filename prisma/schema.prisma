@@ -86,6 +86,16 @@ model Content {
   @@index([kind])
 }
 
+// Editable legal pages (Privacy Policy, Terms of Use) managed from the admin.
+model LegalPage {
+  id        String   @id @default(cuid())
+  slug      String   @unique
+  title     String
+  body      String
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+}
+
 enum PublicationStatus {
   DRAFT
   PUBLISHED
