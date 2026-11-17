@@ -44,9 +44,9 @@ export default function Home() {
         {/* <Marquee /> */}
         <About />
         <SeeMore href="/about" label="More about the firm" tone="paper-deep" />
-        <Approach />
         <PracticeAreas />
         <SeeMore href="/practice-areas" label="See all practice areas" tone="paper" />
+        <Approach />
         <VisualStrip limit={8} />
         <SeeMore href="/insights" label="All insights & updates" tone="ink" />
         <Team limit={3} />
