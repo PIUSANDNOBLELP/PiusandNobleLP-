@@ -19,14 +19,22 @@ import Footer from "@/components/footer";
 function SeeMore({ href, label, tone }: { href: string; label: string; tone: "paper" | "paper-deep" | "ink" }) {
   const bg = tone === "ink" ? "bg-ink" : tone === "paper-deep" ? "bg-paper-deep" : "bg-paper";
   const text = tone === "ink" ? "text-paper/70 hover:text-gold" : "text-mute hover:text-gold-deep";
+  const ring = tone === "ink" ? "border-paper/25" : "border-ink/20";
   return (
-    <div className={`${bg} py-10 text-center`}>
-      <Link
-        href={href}
-        className={`group inline-flex items-center gap-3 text-sm font-semibold uppercase tracking-[0.2em] transition-colors ${text}`}
-      >
-        {label}
-        <span className="transition-transform duration-500 group-hover:translate-x-2">→</span>
+    <div className={`${bg} -mt-8 pb-14 pt-0 text-center md:-mt-12`}>
+      <Link href={href} className={`group inline-flex items-center gap-4 ${text}`}>
+        <span className="relative py-1 text-xs font-semibold uppercase tracking-[0.22em]">
+          {label}
+          <span
+            className="absolute inset-x-0 bottom-0 h-px origin-left scale-x-0 bg-current transition-transform duration-500 ease-out group-hover:scale-x-100"
+            aria-hidden
+          />
+        </span>
+        <span
+          className={`flex h-10 w-10 items-center justify-center rounded-full border ${ring} transition-all duration-500 group-hover:border-gold group-hover:bg-gold group-hover:text-ink`}
+        >
+          <span className="text-base transition-transform duration-500 group-hover:translate-x-0.5">→</span>
+        </span>
       </Link>
     </div>
   );
