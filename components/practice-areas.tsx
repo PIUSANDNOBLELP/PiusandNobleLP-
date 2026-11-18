@@ -76,8 +76,8 @@ export default function PracticeAreas() {
   }, [areas.length]);
 
   return (
-    <section ref={ref} id="practice" className="relative bg-paper">
-      <div className="mx-auto grid max-w-7xl gap-14 px-6 py-24 md:px-10 lg:h-svh lg:grid-cols-[1.1fr_1fr] lg:items-center lg:gap-20 lg:py-0 lg:pt-24">
+    <section ref={ref} id="practice" className="relative bg-paper pb-12 md:pb-20">
+      <div className="mx-auto grid max-w-7xl gap-14 px-6 py-24 md:px-10 lg:h-svh lg:grid-cols-[1.1fr_1fr] lg:items-center lg:gap-20 lg:pb-32 lg:pt-24">
         <div>
           <p className="mb-5 flex items-center gap-4 text-xs uppercase tracking-[0.3em] text-gold-deep">
             <span className="h-px w-10 bg-gold-deep" />
