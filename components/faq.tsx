@@ -6,7 +6,7 @@ import Reveal from "@/components/reveal";
 const questions = [
   {
     q: "How do I book a consultation?",
-    a: "Use the 'Book a consultation' button or the contact form, or reach us directly at piusowho@piusandnoblelp.com or +234-8080638471. We reply with the next available times and what to prepare.",
+    a: "Use the 'Book a consultation' button or the contact form, or reach us directly at piusowho@piusandnoblelp.com or +234-8080638471.",
   },
   {
     q: "Do you advise businesses as well as individuals?",
