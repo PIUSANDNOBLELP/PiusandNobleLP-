@@ -49,6 +49,7 @@ export default async function VisualStrip({ limit = 8 }: { limit?: number } = {}
                   src={item.coverImage ?? "/brand/areas.jpg"}
                   className="aspect-[4/5]"
                   imgClassName="transition-transform duration-[1.2s] ease-out group-hover:scale-105"
+                  fit="cover"
                 />
                 <div className="flex items-center justify-between p-6">
                   <div>

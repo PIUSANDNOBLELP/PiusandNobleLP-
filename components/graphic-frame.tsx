@@ -4,10 +4,12 @@ export default function GraphicFrame({
   src,
   className = "",
   imgClassName = "",
+  fit = "contain",
 }: {
   src: string;
   className?: string;
   imgClassName?: string;
+  fit?: "contain" | "cover";
 }) {
   return (
     <div className={`relative overflow-hidden bg-paper ${className}`}>
@@ -19,7 +21,11 @@ export default function GraphicFrame({
         className="absolute inset-0 h-full w-full scale-125 object-cover opacity-60 blur-2xl"
       />
       {/* eslint-disable-next-line @next/next/no-img-element */}
-      <img src={src} alt="" className={`relative h-full w-full object-contain ${imgClassName}`} />
+      <img
+        src={src}
+        alt=""
+        className={`relative h-full w-full ${fit === "cover" ? "object-cover" : "object-contain"} ${imgClassName}`}
+      />
     </div>
   );
 }
