@@ -144,6 +144,26 @@ html {
   }
 }
 
+/* Slow, continuous rotation for the insights hero mark. */
+@keyframes spin-slow {
+  from {
+    transform: rotate(0deg);
+  }
+  to {
+    transform: rotate(360deg);
+  }
+}
+
+.spin-slow {
+  animation: spin-slow 60s linear infinite;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .spin-slow {
+    animation: none;
+  }
+}
+
 /* Admin rich text editor (Tiptap) — placeholder text and basic block spacing,
    since the editor's content isn't styled by the public @tailwindcss/typography-less
    ReactMarkdown overrides. */
