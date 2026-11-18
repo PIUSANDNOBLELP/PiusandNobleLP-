@@ -1,5 +1,6 @@
 import Nav from "@/components/nav";
 import Footer from "@/components/footer";
+import BackLink from "@/components/back-link";
 import { getLegalPage } from "@/lib/data/legal";
 import { sanitizeInsightHtml } from "@/lib/sanitize";
 import { PRIVACY_POLICY, TERMS_OF_USE } from "@/lib/legal-content";
@@ -25,6 +26,7 @@ export default async function LegalPageView({
       <Nav />
       <main className="bg-paper pt-24">
         <article className="mx-auto max-w-3xl px-6 pb-28 md:px-10">
+          <BackLink href="/" label="Back to home" />
           <p className="mb-6 text-xs uppercase tracking-[0.3em] text-gold-deep">Legal</p>
           <h1 className="font-display text-4xl font-normal leading-[1.05] text-ink md:text-6xl">
             {title}

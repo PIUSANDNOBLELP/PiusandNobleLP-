@@ -2,6 +2,7 @@ import { notFound } from "next/navigation";
 import Nav from "@/components/nav";
 import Footer from "@/components/footer";
 import Reveal from "@/components/reveal";
+import BackLink from "@/components/back-link";
 import { getInsightBySlug } from "@/lib/data/content";
 import { sanitizeInsightHtml } from "@/lib/sanitize";
 
@@ -34,6 +35,7 @@ export default async function InsightDetailPage({
       <main className="bg-paper pt-24">
         <article className="mx-auto max-w-3xl px-6 pb-28 md:px-10">
           <Reveal>
+            <BackLink href="/insights" label="All insights" />
             {insight.category && (
               <p className="mb-6 text-xs uppercase tracking-[0.3em] text-gold-deep">{insight.category}</p>
             )}
