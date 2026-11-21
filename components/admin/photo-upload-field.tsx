@@ -27,7 +27,8 @@ export function PhotoUploadField({
   const [error, setError] = useState("");
 
   async function onChange(e: ChangeEvent<HTMLInputElement>) {
-    const file = e.target.files?.[0];
+    const input = e.target;
+    const file = input.files?.[0];
     if (!file) return;
 
     setPreview(URL.createObjectURL(file));
@@ -61,6 +62,8 @@ export function PhotoUploadField({
       setError("Upload failed — try a smaller image (max 10MB) or a different file.");
     } finally {
       setUploading(false);
+      // Allow choosing the same file again after a removal or retry.
+      input.value = "";
     }
   }
 
@@ -74,7 +77,7 @@ export function PhotoUploadField({
           <img src={preview} alt="" className="h-20 w-20 rounded-sm object-cover" />
         )}
         <label className="cursor-pointer rounded-full border border-ink/30 px-5 py-2 text-sm hover:border-gold">
-          {uploading ? "Uploading…" : "Choose image"}
+          {uploading ? "Uploading…" : preview ? "Change image" : "Choose image"}
           <input
             type="file"
             accept="image/png,image/jpeg,image/webp"
@@ -82,6 +85,19 @@ export function PhotoUploadField({
             className="hidden"
           />
         </label>
+        {preview && (
+          <button
+            type="button"
+            onClick={() => {
+              setUrl("");
+              setPreview("");
+              setError("");
+            }}
+            className="rounded-full border border-ink/20 px-5 py-2 text-sm text-mute transition-colors hover:border-red-400 hover:text-red-600"
+          >
+            Remove image
+          </button>
+        )}
       </div>
       {error && <p className="mt-2 text-sm text-red-600">{error}</p>}
     </div>
