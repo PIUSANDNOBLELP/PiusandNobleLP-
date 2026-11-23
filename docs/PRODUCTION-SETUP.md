@@ -92,7 +92,7 @@ Used to deliver website enquiries to the firm's inbox.
 | `CONTACT_TO_EMAIL` | Firm inbox that receives enquiries | `info@piusandnoblelp.com` |
 | `CONTACT_FROM_EMAIL` | Verified sender in Resend | `website@piusandnoblelp.com` |
 | `CONTACT_FROM_NAME` | Display name on the email | `Pius & Noble LP` |
-| `NEXT_PUBLIC_APP_URL` | Production site URL | `https://piusandnoblelp.com` |
+| `APP_URL` | Production site URL (server-side only) | `https://piusandnoblelp.com` |
 | `ADMIN_SEED_EMAIL` | First admin login (change after) | `admin@piusandnoblelp.com` |
 | `ADMIN_SEED_PASSWORD` | First admin password (change after) | a strong password |
 | `ADMIN_SEED_NAME` | Display name | `Admin` |

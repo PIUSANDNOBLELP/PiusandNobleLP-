@@ -16,7 +16,7 @@ export async function inviteAdmin(_prev: InviteState, formData: FormData): Promi
   if (!parsed.success) return { error: "Enter a valid email, or leave it blank." };
 
   const token = await createInvite(admin.id, parsed.data.email || undefined);
-  const base = process.env.NEXT_PUBLIC_APP_URL || "";
+  const base = process.env.APP_URL ?? process.env.NEXT_PUBLIC_APP_URL ?? "";
   const link = `${base}/admin/accept-invite?token=${token}`;
 
   revalidatePath("/admin/admins");
