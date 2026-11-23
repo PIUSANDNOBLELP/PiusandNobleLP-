@@ -121,7 +121,7 @@ export default function Footer() {
 
       <div className="border-t border-paper/10">
         <div className="mx-auto flex max-w-7xl flex-col items-center justify-between gap-4 px-6 py-6 text-xs text-paper/50 md:flex-row md:px-10">
-          <div className="flex flex-wrap items-center justify-center gap-x-5 gap-y-1">
+          <div className="flex flex-wrap items-center justify-center gap-x-5 gap-y-1 mx-auto">
             <p>© {new Date().getFullYear()} Pius &amp; Noble LP. All rights reserved.</p>
             <Link href="/privacy-policy" className="transition-colors hover:text-gold">
               Privacy Policy
@@ -130,17 +130,6 @@ export default function Footer() {
               Terms of Use
             </Link>
           </div>
-          {/* <p className="text-paper/40">
-            Proposal draft, not for publication. Stock photos from{" "}
-            <a href="https://unsplash.com" className="underline transition-colors hover:text-gold">
-              Unsplash
-            </a>{" "}
-            and{" "}
-            <a href="https://commons.wikimedia.org" className="underline transition-colors hover:text-gold">
-              Wikimedia Commons
-            </a>{" "}
-            (data-protection image supplied by the firm).
-          </p> */}
         </div>
       </div>
 
