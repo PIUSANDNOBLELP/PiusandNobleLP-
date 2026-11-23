@@ -155,8 +155,7 @@ export default function TeamClient({
   const associates = members.filter((m) => m.level === "ASSOCIATE");
 
   const shownPartners = preview ? partners.slice(0, limit) : partners;
-  const remaining = preview ? Math.max(0, limit - shownPartners.length) : undefined;
-  const shownAssociates = remaining !== undefined ? associates.slice(0, remaining) : associates;
+  const shownAssociates = preview ? associates.slice(0, limit) : associates;
 
   const hasAny = members.length > 0;
 
