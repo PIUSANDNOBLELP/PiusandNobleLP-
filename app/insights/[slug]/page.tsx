@@ -17,6 +17,18 @@ export async function generateMetadata({
   return {
     title: `${insight.title} | Pius & Noble LP`,
     description: insight.excerpt ?? undefined,
+    openGraph: {
+      type: "article",
+      title: insight.title,
+      description: insight.excerpt ?? undefined,
+      images: insight.coverImage ? [{ url: insight.coverImage, alt: insight.title }] : undefined,
+    },
+    twitter: {
+      card: "summary_large_image",
+      title: insight.title,
+      description: insight.excerpt ?? undefined,
+      images: insight.coverImage ? [insight.coverImage] : undefined,
+    },
   };
 }
 

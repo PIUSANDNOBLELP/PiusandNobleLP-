@@ -32,10 +32,38 @@ const inter = Inter({
   weight: ["400", "500"],
 });
 
+const SITE_URL = "https://piusandnoblelp.com";
+const SITE_DESCRIPTION =
+  "Full-service law firm in Abuja, Nigeria. Corporate, real estate, litigation, energy, data protection and AI.";
+
 export const metadata: Metadata = {
+  metadataBase: new URL(SITE_URL),
   title: "Pius & Noble LP",
-  description:
-    "Trusted legal solutions with global standards. Six practice areas, from AI and data protection to corporate and real estate.",
+  description: SITE_DESCRIPTION,
+  applicationName: "Pius & Noble LP",
+  authors: [{ name: "Pius & Noble LP" }],
+  openGraph: {
+    type: "website",
+    locale: "en_NG",
+    url: SITE_URL,
+    siteName: "Pius & Noble LP",
+    title: "Pius & Noble LP",
+    description: SITE_DESCRIPTION,
+    images: [
+      {
+        url: "/og-image.png",
+        width: 1200,
+        height: 630,
+        alt: "Pius & Noble LP — Legal Practitioners, Abuja, Nigeria",
+      },
+    ],
+  },
+  twitter: {
+    card: "summary_large_image",
+    title: "Pius & Noble LP",
+    description: SITE_DESCRIPTION,
+    images: ["/og-image.png"],
+  },
   // Proposal draft: keep out of search results until the firm approves it.
   robots: { index: false, follow: false },
 };
