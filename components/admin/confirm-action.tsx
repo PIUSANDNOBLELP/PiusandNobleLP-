@@ -28,7 +28,7 @@ export function ConfirmAction({
       <button
         type="button"
         onClick={() => setOpen(true)}
-        className="text-xs text-ink/60 transition-colors hover:text-red-600"
+        className="text-sm text-ink/60 transition-colors hover:text-red-600"
       >
         {triggerLabel}
       </button>

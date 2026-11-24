@@ -1,6 +1,7 @@
 import Link from "next/link";
 import { prisma } from "@/lib/prisma";
 import { deleteTeamMember } from "@/lib/actions/team";
+import { ConfirmAction } from "@/components/admin/confirm-action";
 
 export const metadata = { title: "Team | Admin | Pius & Noble LP" };
 
@@ -62,12 +63,16 @@ export default async function AdminTeamPage() {
                   <Link href={`/admin/team/${m.id}`} className="text-sm text-ink/60 hover:text-gold-deep">
                     Edit
                   </Link>
-                  <form action={deleteTeamMember} className="inline">
-                    <input type="hidden" name="id" value={m.id} />
-                    <button type="submit" className="ml-4 text-sm text-ink/60 hover:text-red-600">
-                      Delete
-                    </button>
-                  </form>
+                  <span className="ml-4 inline-block">
+                    <ConfirmAction
+                      action={deleteTeamMember}
+                      fields={{ id: m.id }}
+                      triggerLabel="Delete"
+                      title={`Delete ${m.name}?`}
+                      description="This permanently removes this team member from the website. This cannot be undone."
+                      confirmLabel="Delete member"
+                    />
+                  </span>
                 </td>
               </tr>
             ))}
