@@ -48,7 +48,30 @@ export async function saveTeamMember(
   };
 
   if (id) {
-    await prisma.teamMember.update({ where: { id }, data });
+    // Changing the display order to a number another member already holds swaps
+    // the two, rather than leaving duplicates. Done in one transaction so the
+    // intermediate state is never visible.
+    await prisma.$transaction(async (tx) => {
+      const current = await tx.teamMember.findUnique({
+        where: { id },
+        select: { displayOrder: true },
+      });
+
+      if (current && current.displayOrder !== data.displayOrder) {
+        const conflict = await tx.teamMember.findFirst({
+          where: { id: { not: id }, displayOrder: data.displayOrder },
+          select: { id: true },
+        });
+        if (conflict) {
+          await tx.teamMember.update({
+            where: { id: conflict.id },
+            data: { displayOrder: current.displayOrder },
+          });
+        }
+      }
+
+      await tx.teamMember.update({ where: { id }, data });
+    });
   } else {
     await prisma.teamMember.create({ data });
   }
