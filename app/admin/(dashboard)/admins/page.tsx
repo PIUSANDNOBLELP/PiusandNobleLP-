@@ -1,8 +1,8 @@
 import { prisma } from "@/lib/prisma";
-import { revokeInvite } from "@/lib/actions/admins";
+import { revokeInvite, deleteAdmin } from "@/lib/actions/admins";
 import { requireAdmin } from "@/lib/auth/dal";
 import { InviteForm } from "@/components/admin/invite-form";
-import { DeleteAdminButton } from "@/components/admin/delete-admin-button";
+import { ConfirmAction } from "@/components/admin/confirm-action";
 
 export const metadata = { title: "Admins | Admin | Pius & Noble LP" };
 
@@ -15,6 +15,9 @@ export default async function AdminsPage() {
       orderBy: { createdAt: "desc" },
     }),
   ]);
+
+  // The first admin ever created is the superadmin and can never be removed.
+  const superadmin = admins[0];
 
   return (
     <div>
@@ -40,7 +43,22 @@ export default async function AdminsPage() {
                   {a.lastLoginAt ? a.lastLoginAt.toLocaleDateString() : "Never"}
                 </td>
                 <td className="px-5 py-4 text-right">
-                  <DeleteAdminButton id={a.id} name={a.name} disabled={a.id === current.id} />
+                  {a.id === superadmin.id ? (
+                    <span className="text-xs uppercase tracking-[0.15em] text-gold-deep">
+                      Owner
+                    </span>
+                  ) : a.id === current.id ? (
+                    <span className="text-xs text-mute">You</span>
+                  ) : (
+                    <ConfirmAction
+                      action={deleteAdmin}
+                      fields={{ id: a.id }}
+                      triggerLabel="Remove"
+                      title={`Remove ${a.name}?`}
+                      description="This permanently removes their admin access. They will no longer be able to sign in. This cannot be undone."
+                      confirmLabel="Remove admin"
+                    />
+                  )}
                 </td>
               </tr>
             ))}
@@ -58,12 +76,14 @@ export default async function AdminsPage() {
                 className="flex items-center justify-between rounded-sm border border-ink/10 px-5 py-3 text-sm"
               >
                 <span className="text-mute">{inv.email ?? "No email set"} — expires {inv.expiresAt.toLocaleDateString()}</span>
-                <form action={revokeInvite}>
-                  <input type="hidden" name="id" value={inv.id} />
-                  <button type="submit" className="text-ink/60 hover:text-red-600">
-                    Revoke
-                  </button>
-                </form>
+                <ConfirmAction
+                  action={revokeInvite}
+                  fields={{ id: inv.id }}
+                  triggerLabel="Revoke"
+                  title="Revoke this invite?"
+                  description="The invite link will stop working immediately."
+                  confirmLabel="Revoke invite"
+                />
               </div>
             ))}
           </div>

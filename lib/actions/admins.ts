@@ -32,13 +32,19 @@ export async function revokeInvite(formData: FormData): Promise<void> {
   revalidatePath("/admin/admins");
 }
 
-// Removes an admin account. Guards: you can't delete yourself, and the last
-// remaining admin can never be removed. The admin's invite history is deleted
-// with them (the FK is required), while their authored content stays.
+// Removes an admin account. Guards: you can't delete yourself, the superadmin
+// (the first admin ever created) can never be removed, and the last remaining
+// admin is protected. The admin's invite history is deleted with them.
 export async function deleteAdmin(formData: FormData): Promise<void> {
   const current = await requireAdmin();
   const id = String(formData.get("id") ?? "");
   if (!id || id === current.id) return;
+
+  const superadmin = await prisma.admin.findFirst({
+    orderBy: { createdAt: "asc" },
+    select: { id: true },
+  });
+  if (!superadmin || id === superadmin.id) return;
 
   const others = await prisma.admin.count({ where: { id: { not: id } } });
   if (others < 1) return;
