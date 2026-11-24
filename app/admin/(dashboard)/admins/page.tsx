@@ -18,6 +18,7 @@ export default async function AdminsPage() {
 
   // The first admin ever created is the superadmin and can never be removed.
   const superadmin = admins[0];
+  const isSuperadmin = current.id === superadmin.id;
 
   return (
     <div>
@@ -49,7 +50,7 @@ export default async function AdminsPage() {
                     </span>
                   ) : a.id === current.id ? (
                     <span className="text-xs text-mute">You</span>
-                  ) : (
+                  ) : isSuperadmin ? (
                     <ConfirmAction
                       action={deleteAdmin}
                       fields={{ id: a.id }}
@@ -58,6 +59,8 @@ export default async function AdminsPage() {
                       description="This permanently removes their admin access. They will no longer be able to sign in. This cannot be undone."
                       confirmLabel="Remove admin"
                     />
+                  ) : (
+                    <span className="text-xs text-mute">—</span>
                   )}
                 </td>
               </tr>
