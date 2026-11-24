@@ -1,10 +1,13 @@
 import { prisma } from "@/lib/prisma";
 import { revokeInvite } from "@/lib/actions/admins";
+import { requireAdmin } from "@/lib/auth/dal";
 import { InviteForm } from "@/components/admin/invite-form";
+import { DeleteAdminButton } from "@/components/admin/delete-admin-button";
 
 export const metadata = { title: "Admins | Admin | Pius & Noble LP" };
 
 export default async function AdminsPage() {
+  const current = await requireAdmin();
   const [admins, invites] = await Promise.all([
     prisma.admin.findMany({ orderBy: { createdAt: "asc" } }),
     prisma.adminInvite.findMany({
@@ -25,6 +28,7 @@ export default async function AdminsPage() {
               <th className="px-5 py-3">Name</th>
               <th className="px-5 py-3">Email</th>
               <th className="px-5 py-3">Last login</th>
+              <th className="px-5 py-3" />
             </tr>
           </thead>
           <tbody>
@@ -34,6 +38,9 @@ export default async function AdminsPage() {
                 <td className="px-5 py-4 text-mute">{a.email}</td>
                 <td className="px-5 py-4 text-mute">
                   {a.lastLoginAt ? a.lastLoginAt.toLocaleDateString() : "Never"}
+                </td>
+                <td className="px-5 py-4 text-right">
+                  <DeleteAdminButton id={a.id} name={a.name} disabled={a.id === current.id} />
                 </td>
               </tr>
             ))}

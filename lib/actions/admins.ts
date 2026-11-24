@@ -32,6 +32,25 @@ export async function revokeInvite(formData: FormData): Promise<void> {
   revalidatePath("/admin/admins");
 }
 
+// Removes an admin account. Guards: you can't delete yourself, and the last
+// remaining admin can never be removed. The admin's invite history is deleted
+// with them (the FK is required), while their authored content stays.
+export async function deleteAdmin(formData: FormData): Promise<void> {
+  const current = await requireAdmin();
+  const id = String(formData.get("id") ?? "");
+  if (!id || id === current.id) return;
+
+  const others = await prisma.admin.count({ where: { id: { not: id } } });
+  if (others < 1) return;
+
+  await prisma.$transaction([
+    prisma.adminInvite.deleteMany({ where: { invitedByAdminId: id } }),
+    prisma.admin.delete({ where: { id } }),
+  ]);
+
+  revalidatePath("/admin/admins");
+}
+
 export type AcceptInviteState = { error?: string };
 
 export async function acceptInvite(
